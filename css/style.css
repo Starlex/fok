@@ -15,6 +15,12 @@ a{
 	font-weight: normal;
 	text-decoration: underline;
 }
+.leftblock{
+	border: 1px solid;
+	display: block;
+	float: left;
+	height: 100%;
+}
 .center{
 	text-align: center;
 }
