@@ -17,41 +17,36 @@ a{
 	font-weight: normal;
 	text-decoration: underline;
 }
-.leftblock{
-	display: block;
-	float: left;
-	margin:0;
-	outline: 1px solid;
-	padding: 400px 5px 0 20px;
-	width: 20%;
-}
 .topblock{
 	display: block;
-	float: left;
 	height: 10%;
-	margin:0;
-	outline: 1px solid red;
 	padding: 10px 5px 0 20px;
-	width: 75%;
+	width: 100%;
+}
+.leftblock{
+	display: intline-block;
+	float: left;
+	outline: 1px solid;
+	padding: 400px 5px 0 20px;
+	position: fixed left;
+	width: 20%;
 }
 .bottomblock{
 	bottom: 0;
 	display: block;
 	float: left;
 	height: 15%;
-	margin-top:1px;
 	outline: 1px solid green;
 	padding: 10px 5px 0 20px;
-	position: absolute;
-	width: 75%;
+	position: fixed bottom;
+	width: 100%;
 }
 .container{
+	/*display: block;*/
 	float: left;
-	height: 75%;
-	margin:0;
 	outline: 1px solid yellow;
-	/*overflow: auto;*/
 	padding: 10px 5px 0 20px;
+	position: relative;
 	width: 75%;
 }
 .center{
