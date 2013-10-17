@@ -1,9 +1,11 @@
+/*default html style*/
 html{
-	/*background-image: url(http://habinfo.ru/wp-content/uploads/2013/08/brushed-metal-background-1514.png);*/
+	background-image: url(../img/background.gif);
 	height: 100%;
 	position: absolute;
 	width: 100%;
 }
+/*default body style*/
 body{
 	height: 100%;
 	margin: 10px auto;
@@ -11,44 +13,72 @@ body{
 	outline: 1px solid;
 	width: 90%;
 }
+/*default links style*/
 a{
 	color: black;
 	display: inline-block;
 	font-weight: normal;
 	text-decoration: underline;
 }
-.topblock{
-	display: block;
-	height: 10%;
-	padding: 10px 5px 0 20px;
-	width: 100%;
-}
+/*LEFT BLOCK OF SITE: NVGU LOGO AND MENU*/
 .leftblock{
-	display: intline-block;
+	display: block;
 	float: left;
-	outline: 1px solid;
-	padding: 400px 5px 0 20px;
+	/*outline: 1px solid;*/
 	position: fixed left;
+	text-align: center;
 	width: 20%;
 }
+	/*div with nvgu logo*/
+	.logo{
+		background-image: url(../img/logo.png);
+		display: block;
+		height: 130px;
+		margin: 0 auto;
+		position: relative;
+		width: 130px;
+	}
+		/*make nvgu logo as link*/
+		.logo a{
+			display: block;
+			height: 100%;
+			width: 100%;
+		}
+	/*sighn under nvgu logo*/
+	.logoSign{
+		font-weight: bold;
+		font-style: italic;
+		margin-bottom: 150px;
+	}
+/*TOP BLOCK OF SITE: NAME OF SITE AND SLOGAN*/
+.topblock{
+	display: block;
+	float: left;
+	height: 10%;
+	margin-left: 30px;
+	outline: 1px solid red;
+	position: relative;
+	width: 75%;
+}
+/*DIV FOR MAIN CONTENT OF SITE*/
+.container{
+	float: left;
+	margin-left: 30px;
+	outline: 1px solid yellow;
+	position: relative;
+	width: 75%;
+}
+/*FOOTER OF SITE: BOTTOM MENU*/
 .bottomblock{
 	bottom: 0;
 	display: block;
 	float: left;
 	height: 15%;
-	outline: 1px solid green;
-	padding: 10px 5px 0 20px;
+	/*outline: 1px solid green;*/
 	position: fixed bottom;
 	width: 100%;
 }
-.container{
-	/*display: block;*/
-	float: left;
-	outline: 1px solid yellow;
-	padding: 10px 5px 0 20px;
-	position: relative;
-	width: 75%;
-}
+/*positioning text in center*/
 .center{
 	text-align: center;
 }
