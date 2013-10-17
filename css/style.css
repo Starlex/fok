@@ -20,6 +20,7 @@ a{
 	font-weight: normal;
 	text-decoration: underline;
 }
+/*############################   MAIN STRUCTURE OF SITE   ############################*/
 /*LEFT BLOCK OF SITE: NVGU LOGO AND MENU*/
 .leftblock{
 	display: block;
@@ -74,9 +75,14 @@ a{
 	display: block;
 	float: left;
 	height: 15%;
-	/*outline: 1px solid green;*/
+	outline: 1px solid green;
 	position: fixed bottom;
 	width: 100%;
+}
+
+/*############################   MENU   ############################*/
+.menu a{
+	text-decoration: none;
 }
 /*positioning text in center*/
 .center{

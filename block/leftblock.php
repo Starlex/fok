@@ -6,19 +6,19 @@
 	<div class="menu">
 		<ul>
 			<hr>
-			<li><a href="">sadfasdf</a></li>
+			<li><a href="">Домашняя страница</a></li>
 			<hr>
-			<li><a href="">safasdfsa</a></li>
+			<li><a href="">О нас</a></li>
 			<hr>
-			<li><a href="">safasdfsa</a></li>
+			<li><a href="">Наши координаты</a></li>
 			<hr>
-			<li><a href="">safasdfsa</a></li>
+			<li><a href="">Список услуг</a></li>
 			<hr>
-			<li><a href="">safasdfsa</a></li>
+			<li><a href="">Список тарифов</a></li>
 			<hr>
-			<li><a href="">safasdfsa</a></li>
+			<li><a href="">Календарь</a></li>
 			<hr>
-			<li><a href="">safasdfsa</a></li>
+			<li><a href="">Новости</a></li>
 			<hr>
 		</ul>
 	</div>
