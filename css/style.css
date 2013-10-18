@@ -82,6 +82,7 @@ a{
 
 /*############################   MENU   ############################*/
 .menu a{
+	display: block;
 	text-decoration: none;
 }
 /*positioning text in center*/
