@@ -32,6 +32,18 @@ function cyrillic2latin($str){
 
 /* Draw menu (vertical or horizontal) */
 function drawMenu($menu, $vertical = true, $page = ''){
-	;
+	/*echo "<pre>";
+    print_r($menu);
+    echo "</pre>";*/
+    echo "<div class='v-menu'>";
+        echo "<ul>";
+        foreach ($menu as $item) {
+            // echo "<pre>";
+            // print_r($item);
+            // echo "</pre>";
+            echo "<li><a href=$item[link]>$item[name]</a></li>";
+        }
+        echo "</ul>";
+    echo "</div>";
 }
 ?>
