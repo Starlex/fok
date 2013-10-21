@@ -9,5 +9,7 @@
 
 	<link rel="stylesheet" href="./css/reset.css" type="text/css">
 	<link rel="stylesheet" href="./css/style.css" type="text/css">
+
+	<script type="text/javascript" src="./js/jsfunlib.js"></script>
 </head>
 <body>

@@ -35,15 +35,16 @@ function drawMenu($menu, $vertical = true, $page = ''){
 	/*echo "<pre>";
     print_r($menu);
     echo "</pre>";*/
-    echo "<div class='v-menu'>";
-        echo "<ul>";
+    $style = 'v-menu';
+    if(!$vertical){
+        $style = 'h-menu';
+    }
+    echo "<div class='{$style}'>";
+        echo "\n\t\t<ul>";
         foreach ($menu as $item) {
-            // echo "<pre>";
-            // print_r($item);
-            // echo "</pre>";
-            echo "<li><a href=$item[link]>$item[name]</a></li>";
+            echo "\n\t\t\t<li><a href='$item[link]'>$item[name]</a></li>";
         }
-        echo "</ul>";
-    echo "</div>";
+        echo "\n\t\t</ul>";
+    echo "\n\t</div>";
 }
 ?>
