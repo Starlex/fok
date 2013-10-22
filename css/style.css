@@ -49,7 +49,7 @@ a{
 	.logoSign{
 		font-weight: bold;
 		font-style: italic;
-		margin-bottom: 150px;
+		margin-bottom: 100px;
 	}
 /*TOP BLOCK OF SITE: NAME OF SITE AND SLOGAN*/
 .topblock{
@@ -118,10 +118,25 @@ a{
 }
 /* HORIZONTAL MENU */
 .h-menu ul{
-	border: 1px solid;
+	margin-top: 20px;
+	text-align: center;
+	font-size: 18px;
 }
 .h-menu ul li{
-	display: inline;
+	display: inline-block;
+	text-decoration: none;
+	margin-right: -5px;
+}
+.h-menu li ul li{
+	/*display: none;*/
+}
+.h-menu li:hover a{
+	outline: 1px solid;
+}
+.h-menu a{
+	display: inline-block;
+	padding: 10px;
+	text-decoration: none;
 }
 
 /*positioning text in center*/
