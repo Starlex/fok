@@ -31,7 +31,7 @@ function cyrillic2latin($str){
 }
 
 /* Draw menu (vertical or horizontal) */
-function drawMenu($menu, $vertical = true, $page = ''){
+function drawMenu($link, $menu, $vertical = true, $page = ''){
 	/*echo "<pre>";
     print_r($menu);
     echo "</pre>";*/
@@ -39,7 +39,7 @@ function drawMenu($menu, $vertical = true, $page = ''){
     if(!$vertical){
         $style = 'h-menu';
     }
-    echo "<div class='{$style}'>";
+    echo "<div class='$style'>";
         echo "\n\t\t<ul>";
         foreach ($menu as $item) {
             echo "\n\t\t\t<li><a href='$item[link]'>$item[name]</a></li>";

@@ -30,6 +30,6 @@ $menu = array(
 			<li><a href='news/'>Новости</a></li>
 		</ul>
 	</div>
-	<!-- <?=drawMenu($menu)?> -->
+	<!-- <?=drawMenu($db, $menu)?> -->
 
 </div>
