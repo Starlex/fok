@@ -65,6 +65,7 @@ a{
 .container{
 	float: left;
 	margin-left: 30px;
+	min-height: 60%;
 	outline: 1px solid yellow;
 	position: relative;
 	width: 75%;
@@ -84,7 +85,6 @@ a{
 /*############################   MENU   ############################*/
 .v-menu, .h-menu{
 	border: 0 none;
-	font-size: 18px;
 	list-style: none;
 	margin: 0;
 	padding: 0;
@@ -99,7 +99,8 @@ a{
 	.v-menu li ul{
 		display: none;
 		position: absolute;
-		margin: -3.2% 0 0 20%;
+		/*margin: -3.2% 0 0 20%;*/
+		margin: -36px 0 0 227px;
 		width: 20%;
 		z-index: 1;
 	}
@@ -122,12 +123,15 @@ a{
 .h-menu ul{
 	margin-top: 20px;
 	text-align: center;
-	
+	font-size: 18px;
 }
 .h-menu ul li{
 	display: inline-block;
 	text-decoration: none;
 	margin-right: -5px;
+}
+.h-menu li ul{
+	display: none;
 }
 .h-menu li:hover a{
 	background-color: #90EE90;

@@ -41,28 +41,31 @@ function drawMenu($db, $vertical = true, $page = ''){
         $style = 'h-menu';
     }
 
-    $sql = "SELECT p.page_id, sp.page_id pid, p.page_link, p.page_name, sp.sub_page_link, sp.sub_page_name
-            FROM tbl_pages p
-            LEFT JOIN tbl_sub_pages sp
-            ON p.page_id = sp.page_id";
     try{
         $db->beginTransaction();
-        $sql_result = $db->query($sql);
+        $pages = $db->query('SELECT * FROM tbl_pages');
+        $sub_pages = $db->query('SELECT * FROM tbl_sub_pages');
         $db->commit();
-        $sql_result->setFetchMode(PDO::FETCH_ASSOC);
-        echo "<div class='$style'>";
-            echo "\n\t\t<ul>";
-        while($row = $sql_result->fetch()){
-            // echo "<pre>";
-            // print_r($row);
-            // echo "</pre>";
-            echo "\n\t\t\t<li><a href='$row[page_link]'>$row[page_name]</a></li>";
-            if($row['page_id'] === $row['pid']){
-                echo "\n\t\t\t<li><a href='$row[sub_page_link]'>$row[sub_page_name]</a></li>";
-            }
-        }
-            echo "\n\t\t</ul>";
-        echo "\n\t</div>";
+        $pages->setFetchMode(PDO::FETCH_ASSOC);
+        $row_pages = $pages->fetchAll();
+        $sub_pages->setFetchMode(PDO::FETCH_ASSOC);
+        $row_sub_pages = $sub_pages->fetchAll();
+
+        echo "<div class='$style'>",
+        "\n\t\t", "<ul>";
+                foreach ($row_pages as $page) {
+                    echo "\n\t\t\t", "<li><a href='$page[page_link]'>$page[page_name]</a>",
+                            "\n\t\t\t\t", "<ul>";
+                        foreach ($row_sub_pages as $sub_page) {
+                            if($page['page_id'] === $sub_page['page_id']){
+                                echo "\n\t\t\t\t\t", "<li><a href='$sub_page[sub_page_link]'>$sub_page[sub_page_name]</a>";
+                            }
+                        }
+                    echo "\n\t\t\t\t", "</ul>",
+                    "\n\t\t\t", "</li>";
+                }
+            echo "\n\t\t", "</ul>",
+            "\n\t", "</div>";
     }
     catch(PDOException $e){
         $db->rollback();
