@@ -31,20 +31,42 @@ function cyrillic2latin($str){
 }
 
 /* Draw menu (vertical or horizontal) */
-function drawMenu($link, $menu, $vertical = true, $page = ''){
+function drawMenu($db, $vertical = true, $page = ''){
 	/*echo "<pre>";
     print_r($menu);
     echo "</pre>";*/
+
     $style = 'v-menu';
     if(!$vertical){
         $style = 'h-menu';
     }
-    echo "<div class='$style'>";
-        echo "\n\t\t<ul>";
-        foreach ($menu as $item) {
-            echo "\n\t\t\t<li><a href='$item[link]'>$item[name]</a></li>";
+
+    $sql = "SELECT p.page_id, sp.page_id pid, p.page_link, p.page_name, sp.sub_page_link, sp.sub_page_name
+            FROM tbl_pages p
+            LEFT JOIN tbl_sub_pages sp
+            ON p.page_id = sp.page_id";
+    try{
+        $db->beginTransaction();
+        $sql_result = $db->query($sql);
+        $db->commit();
+        $sql_result->setFetchMode(PDO::FETCH_ASSOC);
+        echo "<div class='$style'>";
+            echo "\n\t\t<ul>";
+        while($row = $sql_result->fetch()){
+            // echo "<pre>";
+            // print_r($row);
+            // echo "</pre>";
+            echo "\n\t\t\t<li><a href='$row[page_link]'>$row[page_name]</a></li>";
+            if($row['page_id'] === $row['pid']){
+                echo "\n\t\t\t<li><a href='$row[sub_page_link]'>$row[sub_page_name]</a></li>";
+            }
         }
-        echo "\n\t\t</ul>";
-    echo "\n\t</div>";
+            echo "\n\t\t</ul>";
+        echo "\n\t</div>";
+    }
+    catch(PDOException $e){
+        $db->rollback();
+        die("Ошибка при доступе к базе данных: <br>in file: ".$e->getFile()."; line: ".$e->getLine().";<br>error: ".$e->getMessage());
+    }
 }
 ?>

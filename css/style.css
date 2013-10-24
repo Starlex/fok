@@ -30,6 +30,12 @@ a{
 	text-align: center;
 	width: 20%;
 }
+	/*sighn under nvgu logo*/
+	.logoSign{
+		font-weight: bold;
+		font-style: italic;
+		margin-bottom: 100px;
+	}
 	/*div with nvgu logo*/
 	.logo{
 		background-image: url(../img/logo.png);
@@ -45,13 +51,7 @@ a{
 			height: 100%;
 			width: 100%;
 		}
-	/*sighn under nvgu logo*/
-	.logoSign{
-		font-weight: bold;
-		font-style: italic;
-		margin-bottom: 100px;
-	}
-/*TOP BLOCK OF SITE: NAME OF SITE AND SLOGAN*/
+/*TOP BLOCK OF SITE: NAME OF SITE*/
 .topblock{
 	display: block;
 	float: left;
@@ -74,8 +74,9 @@ a{
 	bottom: 0;
 	display: block;
 	float: left;
-	height: 15%;
-	outline: 1px solid green;
+	height: 10%;
+	margin-top: 30px;
+	/*outline: 1px solid;*/
 	position: fixed bottom;
 	width: 100%;
 }
@@ -83,6 +84,7 @@ a{
 /*############################   MENU   ############################*/
 .v-menu, .h-menu{
 	border: 0 none;
+	font-size: 18px;
 	list-style: none;
 	margin: 0;
 	padding: 0;
@@ -120,17 +122,15 @@ a{
 .h-menu ul{
 	margin-top: 20px;
 	text-align: center;
-	font-size: 18px;
+	
 }
 .h-menu ul li{
 	display: inline-block;
 	text-decoration: none;
 	margin-right: -5px;
 }
-.h-menu li ul li{
-	/*display: none;*/
-}
 .h-menu li:hover a{
+	background-color: #90EE90;
 	outline: 1px solid;
 }
 .h-menu a{
