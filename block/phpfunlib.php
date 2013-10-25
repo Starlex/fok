@@ -31,11 +31,14 @@ function cyrillic2latin($str){
 }
 
 /* Draw menu (vertical or horizontal) */
-function drawMenu($db, $vertical = true, $page = ''){
+function drawMenu($db, $vertical = true){
 	/*echo "<pre>";
     print_r($menu);
     echo "</pre>";*/
-
+    $selected_page = "../";
+    if(isset($_GET['page'])){
+        $page = $_GET['page'];
+    }
     $style = 'v-menu';
     if(!$vertical){
         $style = 'h-menu';
@@ -54,7 +57,11 @@ function drawMenu($db, $vertical = true, $page = ''){
         echo "<div class='$style'>",
         "\n\t\t", "<ul>";
                 foreach ($row_pages as $page) {
-                    echo "\n\t\t\t", "<li><a href='$page[page_link]'>$page[page_name]</a>",
+                    $li_style = "";
+                    if($page['page_link'] === $selected_page){
+                        $li_style = " class='selected'";
+                    }
+                    echo "\n\t\t\t", "<li$li_style><a href='$page[page_link]'>$page[page_name]</a>",
                             "\n\t\t\t\t", "<ul>";
                         foreach ($row_sub_pages as $sub_page) {
                             if($page['page_id'] === $sub_page['page_id']){

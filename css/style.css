@@ -10,7 +10,7 @@ body{
 	height: 95%;
 	margin: 10px auto;
 	position: relative;
-	outline: 1px solid;
+	/*outline: 1px solid;*/
 	width: 90%;
 }
 /*default links style*/
@@ -141,6 +141,10 @@ a{
 	display: inline-block;
 	padding: 10px;
 	text-decoration: none;
+}
+.selected{
+	background-color: #DCDCDC;
+	opacity: 0.5;
 }
 
 /*positioning text in center*/
