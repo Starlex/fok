@@ -32,9 +32,6 @@ function cyrillic2latin($str){
 
 /* Draw menu (vertical or horizontal) */
 function drawMenu($db, $vertical = true){
-	/*echo "<pre>";
-    print_r($menu);
-    echo "</pre>";*/
     $selected_page = "../";
     if(isset($_GET['page'])){
         $page = $_GET['page'];
@@ -43,7 +40,6 @@ function drawMenu($db, $vertical = true){
     if(!$vertical){
         $style = 'h-menu';
     }
-
     try{
         $db->beginTransaction();
         $pages = $db->query('SELECT * FROM tbl_pages');
