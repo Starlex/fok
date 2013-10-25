@@ -76,20 +76,37 @@ function drawMenu($db, $vertical = true){
     }
 }
 
-/* Get page name from DB */
-function getPageName($db){
-    $link = '../';
+/* Get page name and link from DB */
+function getPageNameAndLink($db){
+    $page = array('link' => '../', 'name' => '');
     if(isset($_GET['page'])):
-        $link = $_GET['page'];
+        $page['link'] = $_GET['page'];
     endif;
     try{
         $db->beginTransaction();
-        $sql = $db->query("SELECT page_name FROM tbl_pages WHERE page_link='$link'");
+        $sql = $db->query("SELECT page_name FROM tbl_pages WHERE page_link='$page[link]'");
         $db->commit();
         $sql->setFetchMode(PDO::FETCH_ASSOC);
         $row = $sql->fetch();
-        $page_name = $row['page_name'];
-        return $page_name;
+        $page['name'] = $row['page_name'];
+        return $page;
+    }
+    catch(PDOException $e){
+        $db->rollback();
+        $error = "Ошибка при доступе к базе данных: <br>in file: ".$e->getFile()."; line: ".$e->getLine().";<br>error: ".$e->getMessage();
+        return $error;
+    }
+}
+
+/* Get page content */
+function getPageContent($db, $link){
+    try{
+        $db->beginTransaction();
+        $sql = $db->query("SELECT page_content FROM tbl_pages WHERE page_link='$link'");
+        $db->commit();
+        $sql->setFetchMode(PDO::FETCH_ASSOC);
+        $row = $sql->fetch();
+        return $row['page_content'];
     }
     catch(PDOException $e){
         $db->rollback();

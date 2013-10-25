@@ -12,8 +12,17 @@ require_once "./block/topblock.php";
 ?>
 
 <div class="container">
-	hhhjmfhjjjkjjhjhjjkkjlkjl
-
+	<?php
+	$link = getPageNameAndLink($db)['link'];
+	echo getPageContent($db, $link);
+	echo "<pre>";
+	print_r($GLOBALS);
+	echo "</pre>";
+	$_SERVER;
+	/*echo "<pre>";
+	print_r($_SERVER);
+	echo "</pre>";*/
+	?>
 </div>
 
 <?php
