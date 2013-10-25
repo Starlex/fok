@@ -33,13 +33,13 @@ function cyrillic2latin($str){
 /* Draw menu (vertical or horizontal) */
 function drawMenu($db, $vertical = true){
     $selected_page = "../";
-    if(isset($_GET['page'])){
+    if(isset($_GET['page'])):
         $page = $_GET['page'];
-    }
+    endif;
     $style = 'v-menu';
-    if(!$vertical){
+    if(!$vertical):
         $style = 'h-menu';
-    }
+    endif;
     try{
         $db->beginTransaction();
         $pages = $db->query('SELECT * FROM tbl_pages');
@@ -52,27 +52,49 @@ function drawMenu($db, $vertical = true){
 
         echo "<div class='$style'>",
         "\n\t\t", "<ul>";
-                foreach ($row_pages as $page) {
+                foreach ($row_pages as $page):
                     $li_style = "";
-                    if($page['page_link'] === $selected_page){
+                    if($page['page_link'] === $selected_page):
                         $li_style = " class='selected'";
-                    }
+                    endif;
                     echo "\n\t\t\t", "<li$li_style><a href='$page[page_link]'>$page[page_name]</a>",
                             "\n\t\t\t\t", "<ul>";
-                        foreach ($row_sub_pages as $sub_page) {
-                            if($page['page_id'] === $sub_page['page_id']){
+                        foreach ($row_sub_pages as $sub_page):
+                            if($page['page_id'] === $sub_page['page_id']):
                                 echo "\n\t\t\t\t\t", "<li><a href='$sub_page[sub_page_link]'>$sub_page[sub_page_name]</a>";
-                            }
-                        }
+                            endif;
+                        endforeach;
                     echo "\n\t\t\t\t", "</ul>",
                     "\n\t\t\t", "</li>";
-                }
+                endforeach;
             echo "\n\t\t", "</ul>",
             "\n\t", "</div>";
     }
     catch(PDOException $e){
         $db->rollback();
         die("Ошибка при доступе к базе данных: <br>in file: ".$e->getFile()."; line: ".$e->getLine().";<br>error: ".$e->getMessage());
+    }
+}
+
+/* Get page name from DB */
+function getPageName($db){
+    $link = '../';
+    if(isset($_GET['page'])):
+        $link = $_GET['page'];
+    endif;
+    try{
+        $db->beginTransaction();
+        $sql = $db->query("SELECT page_name FROM tbl_pages WHERE page_link='$link'");
+        $db->commit();
+        $sql->setFetchMode(PDO::FETCH_ASSOC);
+        $row = $sql->fetch();
+        $page_name = $row['page_name'];
+        return $page_name;
+    }
+    catch(PDOException $e){
+        $db->rollback();
+        $error = "Ошибка при доступе к базе данных: <br>in file: ".$e->getFile()."; line: ".$e->getLine().";<br>error: ".$e->getMessage();
+        return $error;
     }
 }
 ?>

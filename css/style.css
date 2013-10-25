@@ -20,6 +20,10 @@ a{
 	font-weight: normal;
 	text-decoration: underline;
 }
+abbr{
+	border-bottom: 1px dashed blue;
+	color: #000080;
+}
 /*############################   MAIN STRUCTURE OF SITE   ############################*/
 /*LEFT BLOCK OF SITE: NVGU LOGO AND MENU*/
 .leftblock{
@@ -53,19 +57,37 @@ a{
 		}
 /*TOP BLOCK OF SITE: NAME OF SITE*/
 .topblock{
+	background-image: url(../img/headimg.jpg);
+	background-repeat: repeat-x;
 	display: block;
 	float: left;
-	height: 10%;
+	height: 30%;
 	margin-left: 30px;
-	outline: 1px solid red;
+	/*outline: 1px solid red;*/
 	position: relative;
+	text-align: center;
 	width: 75%;
 }
+	.topblock div{
+		border: 3px solid;
+		height: 50%;
+		margin: 50px auto 0;
+		outline: 1px solid;
+		padding: 15px 30px 10px;
+		width: 65%;
+	}
+		.orgname{
+			font-size: 2em;
+			text-transform: uppercase;
+		}
+		.pagename{
+			font-size: 1.5em;
+		}
 /*DIV FOR MAIN CONTENT OF SITE*/
 .container{
 	float: left;
 	margin-left: 30px;
-	min-height: 60%;
+	min-height: 50%;
 	outline: 1px solid yellow;
 	position: relative;
 	width: 75%;
@@ -110,6 +132,7 @@ a{
 		}
 .v-menu li:hover{
 	background-color: #90EE90;
+	opacity: 1;
 }
 .v-menu li:hover ul{
 	display: block;
@@ -133,8 +156,11 @@ a{
 .h-menu li ul{
 	display: none;
 }
-.h-menu li:hover a{
+.h-menu li:hover{
 	background-color: #90EE90;
+	opacity: 1;
+}
+.h-menu li:hover a{
 	outline: 1px solid;
 }
 .h-menu a{
