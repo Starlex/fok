@@ -32,9 +32,9 @@ function cyrillic2latin($str){
 
 /* Draw menu (vertical or horizontal) */
 function drawMenu($db, $vertical = true){
-    $selected_page = "../";
+    $selected_page = '/main/';
     if(isset($_GET['page'])):
-        $page = $_GET['page'];
+        $selected_page = $_GET['page'];
     endif;
     $style = 'v-menu';
     if(!$vertical):
@@ -78,9 +78,12 @@ function drawMenu($db, $vertical = true){
 
 /* Get page name and link from DB */
 function getPageNameAndLink($db){
-    $page = array('link' => '../', 'name' => '');
+    $page = array('link' => '/main/', 'name' => '');
     if(isset($_GET['page'])):
         $page['link'] = $_GET['page'];
+    endif;
+    if(isset($_GET['var1'])):
+        $page['link'] .= $_GET['var1'];
     endif;
     try{
         $db->beginTransaction();

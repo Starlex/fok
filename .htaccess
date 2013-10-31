@@ -2,12 +2,12 @@
 Options Indexes FollowSymLinks
 DirectoryIndex index.php
 
-RewriteEngine on
+RewriteEngine On
 RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)/(.*)/$ index.php?page=$1&var1=$2 [L,QSA]
-RewriteRule ^(.*)/$ index.php?page=$1 [L,QSA]
+RewriteRule ^(.+)/(.+)/$ /?page=/$1/&var1=$2/ [L,QSA]
+RewriteRule ^(.+)/$ /?page=/$1/ [L,QSA]
 ErrorDocument 404 /404.php
 
 #---Settings for PHP
