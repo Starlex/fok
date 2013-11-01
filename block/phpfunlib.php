@@ -36,6 +36,9 @@ function drawMenu($db, $vertical = true){
     if(isset($_GET['page'])):
         $selected_page = $_GET['page'];
     endif;
+    if (isset($_GET['var1'])):
+        $selected_sub_page = $selected_page.$_GET['var1'];
+    endif;
     $style = 'v-menu';
     if(!$vertical):
         $style = 'h-menu';

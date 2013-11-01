@@ -13,10 +13,10 @@ require_once "./block/topblock.php";
 	if(empty($_GET) or isset($_GET['page'])):
 		require_once '/pages/main.php';
 	endif;
-	echo "<pre>";
+	/*echo "<pre>";
 	print_r($GLOBALS);
 	echo "</pre>";
-	$_SERVER;
+	$_SERVER;*/
 	?>
 </div>
 
