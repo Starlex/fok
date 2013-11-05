@@ -56,15 +56,16 @@ function drawMenu($db, $vertical = true){
         echo "<div class='$style'>",
         "\n\t\t", "<ul>";
                 foreach ($row_pages as $page):
-                    $li_style = "";
-                    if($page['page_link'] === $selected_page):
-                        $li_style = " class='selected'";
+                    $selected_style = "";
+                    if($page['link'] === $selected_page):
+                        $selected_style = " class='selected'";
                     endif;
-                    echo "\n\t\t\t", "<li$li_style><a href='$page[page_link]'>$page[page_name]</a>",
+                    echo "\n\t\t\t", "<li$selected_style><a href='$page[link]'>$page[name]</a>",
                             "\n\t\t\t\t", "<ul>";
                         foreach ($row_sub_pages as $sub_page):
+                            $sub_page_link = $page['link'].$sub_page['link'];
                             if($page['page_id'] === $sub_page['page_id']):
-                                echo "\n\t\t\t\t\t", "<li><a href='$sub_page[sub_page_link]'>$sub_page[sub_page_name]</a>";
+                                echo "\n\t\t\t\t\t", "<li><a href='$sub_page_link'>$sub_page[name]</a>";
                             endif;
                         endforeach;
                     echo "\n\t\t\t\t", "</ul>",
@@ -81,20 +82,24 @@ function drawMenu($db, $vertical = true){
 
 /* Get page name and link from DB */
 function getPageNameAndLink($db){
-    $page = array('link' => '/main/', 'name' => '');
+    $page = array('link' => '/main/', 'name' => '', 'tbl_name' => '');
     if(isset($_GET['page'])):
         $page['link'] = $_GET['page'];
+        $page['tbl_name'] = 'tbl_pages';
+        // $link = $page['link'];
     endif;
     if(isset($_GET['var1'])):
         $page['link'] .= $_GET['var1'];
+        $page['tbl_name'] = 'tbl_sub_pages';
+        $page['link'] = substr($page['link'], strpos($page['link'], '/', 1)+1);
     endif;
     try{
         $db->beginTransaction();
-        $sql = $db->query("SELECT page_name FROM tbl_pages WHERE page_link='$page[link]'");
+        $sql = $db->query("SELECT name FROM $page[tbl_name] WHERE link='$page[link]'");
         $db->commit();
         $sql->setFetchMode(PDO::FETCH_ASSOC);
         $row = $sql->fetch();
-        $page['name'] = $row['page_name'];
+        $page['name'] = $row['name'];
         return $page;
     }
     catch(PDOException $e){
@@ -104,11 +109,11 @@ function getPageNameAndLink($db){
     }
 }
 
-/* Get page content */
-function getPageContent($db, $link){
+/* Get page content from DB */
+function getPageContent($db, $pageData){
     try{
         $db->beginTransaction();
-        $sql = $db->query("SELECT page_content FROM tbl_pages WHERE page_link='$link'");
+        $sql = $db->query("SELECT page_content FROM $pageData[tbl_name] WHERE link='$pageData[link]'");
         $db->commit();
         $sql->setFetchMode(PDO::FETCH_ASSOC);
         $row = $sql->fetch();

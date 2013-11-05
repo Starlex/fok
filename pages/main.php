@@ -1,4 +1,7 @@
 <?php
-$link = getPageNameAndLink($db)['link'];
-echo getPageContent($db, $link);
+$pageData = array(
+				'link' => getPageNameAndLink($db)['link'],
+				'tbl_name' => getPageNameAndLink($db)['tbl_name']
+			);
+echo getPageContent($db, $pageData);
 ?>
