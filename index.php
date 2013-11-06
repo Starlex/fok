@@ -11,12 +11,12 @@ require_once "./block/topblock.php";
 <div class="container">
 	<?php
 	if(empty($_GET) or isset($_GET['page'])):
-		require_once '/pages/main.php';
+		if('admin' === $_GET['page']):
+			require_once '/pages/admin.php';
+		else:
+			require_once '/pages/main.php';
+		endif;
 	endif;
-	/*echo "<pre>";
-	print_r($GLOBALS);
-	echo "</pre>";
-	$_SERVER;*/
 	?>
 </div>
 
