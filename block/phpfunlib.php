@@ -31,7 +31,7 @@ function cyrillic2latin($str){
 }
 
 /* Draw menu (vertical or horizontal) */
-function drawMenu($db, $vertical = true){
+function drawMenu($db, $row_pages, $row_sub_pages, $vertical = true){
     $selected_page = '/main/';
     if(isset($_GET['page'])):
         $selected_page = $_GET['page'];
@@ -43,41 +43,28 @@ function drawMenu($db, $vertical = true){
     if(!$vertical):
         $style = 'h-menu';
     endif;
-    try{
-        $db->beginTransaction();
-        $pages = $db->query('SELECT * FROM tbl_pages');
-        $sub_pages = $db->query('SELECT * FROM tbl_sub_pages');
-        $db->commit();
-        $pages->setFetchMode(PDO::FETCH_ASSOC);
-        $row_pages = $pages->fetchAll();
-        $sub_pages->setFetchMode(PDO::FETCH_ASSOC);
-        $row_sub_pages = $sub_pages->fetchAll();
 
-        echo "<div class='$style'>",
-        "\n\t\t", "<ul>";
-                foreach ($row_pages as $page):
-                    $selected_style = "";
-                    if($page['link'] === $selected_page):
-                        $selected_style = " class='selected'";
+    echo "<div class='$style'>",
+    "\n\t\t", "<ul>";
+        foreach ($row_pages as $page):
+            $selected_style = "";
+            if($page['link'] === $selected_page):
+                $selected_style = " class='selected'";
+            endif;
+            echo "\n\t\t\t", "<li$selected_style><a href='$page[link]'>$page[name]</a>",
+                    "\n\t\t\t\t", "<ul>";
+                foreach ($row_sub_pages as $sub_page):
+                    $sub_page_link = $page['link'].$sub_page['link'];
+                    if($page['page_id'] === $sub_page['page_id']):
+                        echo "\n\t\t\t\t\t", "<li><a href='$sub_page_link'>$sub_page[name]</a>";
                     endif;
-                    echo "\n\t\t\t", "<li$selected_style><a href='$page[link]'>$page[name]</a>",
-                            "\n\t\t\t\t", "<ul>";
-                        foreach ($row_sub_pages as $sub_page):
-                            $sub_page_link = $page['link'].$sub_page['link'];
-                            if($page['page_id'] === $sub_page['page_id']):
-                                echo "\n\t\t\t\t\t", "<li><a href='$sub_page_link'>$sub_page[name]</a>";
-                            endif;
-                        endforeach;
-                    echo "\n\t\t\t\t", "</ul>",
-                    "\n\t\t\t", "</li>";
                 endforeach;
-            echo "\n\t\t", "</ul>",
-            "\n\t", "</div>";
-    }
-    catch(PDOException $e){
-        $db->rollback();
-        die("Ошибка при доступе к базе данных: <br>in file: ".$e->getFile()."; line: ".$e->getLine().";<br>error: ".$e->getMessage());
-    }
+            echo "\n\t\t\t\t", "</ul>",
+            "\n\t\t\t", "</li>";
+        endforeach;
+    echo "\n\t\t", "</ul>",
+    "\n\t", "</div>";
+
 }
 
 /* Get page name and link from DB */
