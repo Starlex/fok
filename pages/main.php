@@ -28,6 +28,7 @@ $pageData = array(
 <div class="container">
 
 	<?php
+    echo '<p><a href="/admin/">asdfkjsaldfjasldkfj</a></p>';
 	echo getPageContent($db, $pageData);
 	?>
 

@@ -21,7 +21,9 @@ require_once "/block/topblock.php";
 <div class="container">
 
 	<?php
-	echo 'This id admin part of site';
+    if('/admin/' === $_GET['page']):
+        echo 'someshit';
+    endif;
 	?>
 
 </div>
