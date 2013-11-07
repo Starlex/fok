@@ -19,13 +19,34 @@ require_once "/block/topblock.php";
 ?>
 
 <div class="container">
-
+<i>asdfsddfa</i>
 	<?php
     if('/admin/' === $_GET['page']):
-        echo 'someshit';
-    endif;
+        // echo 'someshit';
 	?>
 
+<form name="add" method="post" action="">
+    <p>
+        <input type="checkbox" name="" id="">Добавить страницу
+        <i>или</i>
+        <input type="checkbox" name="" id="">Добавить подстраницу
+    </p>
+    <label>
+        <b>Имя страницы</b>
+        <select name="" id="">
+            <option value="" selected> ------- Не выбрано ------- </option>
+        </select>
+    </label>
+    <label>
+        <b>Имя подстраницы</b>
+        <select name="" id="">
+            <option value="" selected> ------- Не выбрано ------- </option>
+        </select>
+    </label>
+</form>
+<?php
+endif;
+?>
 </div>
 
 <?php

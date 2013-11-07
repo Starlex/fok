@@ -25,6 +25,10 @@ abbr{
 	border-bottom: 1px dashed blue;
 	color: #000080;
 }
+/*##################################   FORM ELEMENTS   ###############################*/
+label{
+	display: block;
+}
 /*############################   MAIN STRUCTURE OF SITE   ############################*/
 /*LEFT BLOCK OF SITE: NVGU LOGO AND MENU*/
 .leftblock{

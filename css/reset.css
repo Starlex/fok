@@ -94,3 +94,9 @@ table{
 	border-collapse:collapse;
 	border-spacing:0
 }
+i{
+	font-style: italic;
+}
+b{
+	font-weight: bold;
+}
