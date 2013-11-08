@@ -19,30 +19,38 @@ require_once "/block/topblock.php";
 ?>
 
 <div class="container">
-<i>asdfsddfa</i>
 	<?php
     if('/admin/' === $_GET['page']):
         // echo 'someshit';
 	?>
 
+<label><input type="checkbox" id="addP" onClick="showDiv('addP', 'addPage')">Добавить страницу</label>
+<label><input type="checkbox" id="addSP">Добавить подстраницу</label>
 <form name="add" method="post" action="">
-    <p>
-        <input type="checkbox" name="" id="">Добавить страницу
-        <i>или</i>
-        <input type="checkbox" name="" id="">Добавить подстраницу
-    </p>
-    <label>
-        <b>Имя страницы</b>
-        <select name="" id="">
-            <option value="" selected> ------- Не выбрано ------- </option>
-        </select>
-    </label>
-    <label>
-        <b>Имя подстраницы</b>
-        <select name="" id="">
-            <option value="" selected> ------- Не выбрано ------- </option>
-        </select>
-    </label>
+    <div class="hide" id="addPage">
+        <label>
+            <span>Имя страницы:</span>
+            <select name="pageName">
+                <option value="" selected> - - - - - - - Не выбрано - - - - - - - </option>
+            </select>
+        </label>
+        <label>
+            <span>Содержимое страницы:</span>
+            <textarea name="pageContent" rows="10"></textarea>
+        </label>
+    </div>
+    <div class="hide" id="addSubPage">
+        <label>
+            <span>Имя подстраницы:</span>
+            <select name="subPageName">
+                <option value="" selected> - - - - - - - Не выбрано - - - - - - - </option>
+            </select>
+        </label>
+        <label>
+            <span>Содержимое подстраницы:</span>
+            <textarea name="subPageContent" rows="10"></textarea>
+        </label>
+    </div>
 </form>
 <?php
 endif;

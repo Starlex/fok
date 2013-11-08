@@ -28,7 +28,36 @@ abbr{
 /*##################################   FORM ELEMENTS   ###############################*/
 label{
 	display: block;
+	/*height: 30px;*/
+	margin: 15px 0;
+	padding: 5px;
 }
+	label>span{
+		display: inline-block;
+		float: left;
+		font-weight: bold;
+		padding: 5px;
+		width: 200px;
+	}
+	label select, label input[type="text"]{
+		border: 1px solid;
+		box-shadow: 5px 5px 3px #757575;
+		-mox-box-shadow: 5px 5px 3px #757575;
+		-webkit-box-shadow: 5px 5px 3px #757575;
+		display: inline-block;
+		padding: 5px;
+		width: 300px;
+	}
+	label textarea{
+		border: 1px solid;
+		box-shadow: 5px 5px 3px #757575;
+		-mox-box-shadow: 5px 5px 3px #757575;
+		-webkit-box-shadow: 5px 5px 3px #757575;
+		width: 500px;
+		resize: none;
+	}
+
+
 /*############################   MAIN STRUCTURE OF SITE   ############################*/
 /*LEFT BLOCK OF SITE: NVGU LOGO AND MENU*/
 .leftblock{
@@ -94,7 +123,8 @@ label{
 	float: left;
 	margin-left: 30px;
 	min-height: 50%;
-	outline: 1px solid yellow;
+	/*outline: 1px solid yellow;*/
+	padding-left: 10px;
 	position: relative;
 	width: 75%;
 }
@@ -167,16 +197,23 @@ label{
 .h-menu li:hover a{
 	outline: 1px solid;
 }
+/* links in horizontal menu*/
 .h-menu a{
 	display: inline-block;
 	padding: 7px;
 	text-decoration: none;
 }
+/* selected menu */
 .selected{
 	background-color: #DCDCDC;
 }
 
+/*##################################   OTHER ELEMENTS   ###############################*/
 /*positioning text in center*/
 .center{
 	text-align: center;
+}
+/* hidden elements */
+.hide{
+	display: none;
 }
