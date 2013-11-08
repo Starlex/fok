@@ -25,16 +25,18 @@ abbr{
 	border-bottom: 1px dashed blue;
 	color: #000080;
 }
+acronym{
+	color: #20B2AA;
+	font-weight: bold;
+}
 /*##################################   FORM ELEMENTS   ###############################*/
 label{
 	display: block;
-	/*height: 30px;*/
 	margin: 15px 0;
 	padding: 5px;
 }
 	label>span{
 		display: inline-block;
-		float: left;
 		font-weight: bold;
 		padding: 5px;
 		width: 200px;
@@ -49,12 +51,14 @@ label{
 		width: 300px;
 	}
 	label textarea{
+		display: block;
 		border: 1px solid;
 		box-shadow: 5px 5px 3px #757575;
 		-mox-box-shadow: 5px 5px 3px #757575;
 		-webkit-box-shadow: 5px 5px 3px #757575;
-		width: 500px;
+		height: 400px;
 		resize: none;
+		width: 100%;
 	}
 
 
@@ -209,6 +213,11 @@ label{
 }
 
 /*##################################   OTHER ELEMENTS   ###############################*/
+/* required fields */
+.req{
+	color:red;
+	font-style: italic;
+}
 /*positioning text in center*/
 .center{
 	text-align: center;
