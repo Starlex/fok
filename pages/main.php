@@ -13,9 +13,7 @@ catch(PDOException $e){
     $db->rollback();
     die("Ошибка при доступе к базе данных: <br>in file: ".$e->getFile()."; line: ".$e->getLine().";<br>error: ".$e->getMessage());
 }
-/*echo '<pre>';
-print_r($);
-echo '</pre>';*/
+
 require_once "/block/leftblock.php";
 require_once "/block/topblock.php";
 

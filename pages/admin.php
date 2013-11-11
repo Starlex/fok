@@ -1,4 +1,5 @@
 <?php
+// list of elements for menu
 try{
 	$db->beginTransaction();
     $pages = $db->query('SELECT page_id, link, name FROM tbl_pages WHERE admin = 1');
@@ -14,6 +15,9 @@ catch(PDOException $e){
     die("Ошибка при доступе к базе данных: <br>in file: ".$e->getFile()."; line: ".$e->getLine().";<br>error: ".$e->getMessage());
 }
 
+// list of elements for creating sub pages
+// code will be here
+
 require_once "/block/leftblock.php";
 require_once "/block/topblock.php";
 ?>
@@ -25,8 +29,12 @@ require_once "/block/topblock.php";
 	?>
 
 <form name="add" method="post" action="">
-    <label><input type="checkbox" name="addPchb" id="addP" value="P" onClick="showDiv('addP', 'addPage', 'addSP')">Добавить страницу</label>
-    <label><input type="checkbox" name="addSPchb" id="addSP" value="SP" onClick="showDiv('addSP', 'addSubPage', 'addP')">Добавить подстраницу</label>
+    <label>
+        <input type="checkbox" name="page" id="addP" value="1" onClick="showDiv('addP', 'addPage', 'addSP')">Добавить страницу
+    </label>
+    <label>
+        <input type="checkbox" name="subPage" id="addSP" value="2" onClick="showDiv('addSP', 'addSubPage', 'addP')">Добавить подстраницу
+    </label>
     <div class="hide" id="addPage">
         <label>
             <acronym title="Имя создаваемой страницы">(?)</acronym>

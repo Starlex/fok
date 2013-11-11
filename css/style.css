@@ -1,11 +1,10 @@
-/*default html style*/
+/*##################################   DEFAULT STYLE FOR ELEMENTS   ###############################*/
 html{
 	background-image: url(../img/background.gif);
 	height: 100%;
 	position: absolute;
 	width: 100%;
 }
-/*default body style*/
 body{
 	display: block;
 	height: 95%;
@@ -14,7 +13,6 @@ body{
 	/*outline: 1px solid;*/
 	width: 90%;
 }
-/*default links style*/
 a{
 	color: black;
 	display: inline-block;
@@ -29,6 +27,19 @@ acronym{
 	color: #20B2AA;
 	font-weight: bold;
 }
+fieldset{
+	border: 1px solid;
+	border-radius: 20px;
+	-moz-border-radius: 20px;
+	-webkit-border-radius: 20px;
+	margin: 0 auto;
+	padding: 20px;
+	width: 550px;
+}
+	legend{
+		font-size: 20px;
+	}
+
 /*##################################   FORM ELEMENTS   ###############################*/
 label{
 	display: block;
@@ -41,7 +52,7 @@ label{
 		padding: 5px;
 		width: 200px;
 	}
-	label select, label input[type="text"]{
+	label select, label input[type="text"], label input[type="password"]{
 		border: 1px solid;
 		box-shadow: 5px 5px 3px #757575;
 		-mox-box-shadow: 5px 5px 3px #757575;
@@ -59,6 +70,15 @@ label{
 		height: 400px;
 		resize: none;
 		width: 100%;
+	}
+
+.button_panel{
+	margin-left: 220px;
+}
+	.button{
+		margin-right: 10px;
+		min-height: 30px;
+		min-width: 100px;
 	}
 
 
@@ -94,7 +114,7 @@ label{
 			height: 100%;
 			width: 100%;
 		}
-/*TOP BLOCK OF SITE: NAME OF SITE*/
+/*TOP BLOCK OF SITE: NAME OF SITE AND NAME OF PAGE*/
 .topblock{
 	background-image: url(../img/headimg.jpg);
 	background-repeat: repeat-x;
@@ -142,6 +162,11 @@ label{
 	/*outline: 1px solid;*/
 	position: fixed bottom;
 	width: 100%;
+}
+/*DIV FOR LOGIN ELEMENTS*/
+.login{
+	margin: 0 auto;
+	position: relative;
 }
 
 /*############################   MENU   ############################*/
