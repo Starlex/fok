@@ -1,4 +1,3 @@
-<a href="/logout/">exit</a>
 <?php
 // list of elements for menu
 try{
@@ -16,9 +15,6 @@ catch(PDOException $e){
     die("Ошибка при доступе к базе данных: <br>in file: ".$e->getFile()."; line: ".$e->getLine().";<br>error: ".$e->getMessage());
 }
 
-// list of elements for creating sub pages
-// code will be here
-
 require_once "/block/leftblock.php";
 require_once "/block/topblock.php";
 ?>
@@ -26,7 +22,7 @@ require_once "/block/topblock.php";
 <div class="container">
 	<?php
     if('/admin/' === $_GET['page'] and !isset($_GET['var1'])){
-        require_once '/block/addpageform.php';
+        require_once '/block/addpage.php';
     }
 ?>
 </div>

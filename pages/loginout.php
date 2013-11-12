@@ -1,5 +1,5 @@
 <?php
-if(isset($_POST['send'])):
+if(isset($_POST['send'])){
 	$login = $_POST['login'];
 	$password = md5($_POST['password']);
 	$sql = "SELECT count(*) FROM tbl_admin WHERE login = ? AND password = ?";
@@ -11,15 +11,17 @@ if(isset($_POST['send'])):
 	catch(PDOException $e){
 		die("Ошибка при доступе к базе данных: <br>in file: ".$e->getFile()."; line: ".$e->getLine().";<br>error: ".$e->getMessage());
 	}
-	if($num > 0):
+	if($num > 0){
 		session_start();
 		$_SESSION['login'] = $login;
 		header('Location:/admin/');
-	endif;
+	}
+	else{
+		echo "<b class='req'>Не существует такого пользователя</b>";
+	}
+}
 
-endif;
-
-if('/login/' === $_GET['page']):
+if('/login/' === $_GET['page']){
 ?>
 
 	<fieldset>
@@ -41,10 +43,11 @@ if('/login/' === $_GET['page']):
 	</fieldset>
 
 <?php
-elseif('/logout/' === $_GET['page']):
+}
+elseif('/logout/' === $_GET['page']){
 	session_start();
 	session_destroy();
 	header('Location:/home-page/');
-endif;
+}
 
 ?>

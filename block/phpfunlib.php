@@ -25,9 +25,9 @@ function cyrillic2latin($str){
         'Ч' => 'Ch',  'Ш' => 'Sh',  'Щ' => 'Sch',
         'Ь' => '',    'Ы' => 'Y',   'Ъ' => '',
         'Э' => 'E',   'Ю' => 'Yu',  'Я' => 'Ya',
-		'№' => '',
+		'№' => '',    ' ' => '-',
     );
-    return strtr($string, $converter);
+    return strtr($str, $converter);
 }
 
 /* Draw menu (vertical or horizontal) */

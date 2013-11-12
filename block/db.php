@@ -5,6 +5,6 @@ try{
 	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 }
 catch(PDOException $e){
-	die("Подключение не удалось: ".$e->getMessage());
+	die("Подключение не удалось: <br>in file: ".$e->getFile()."; line: ".$e->getLine().";<br>error: ".$e->getMessage());
 }
 ?>
