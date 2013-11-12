@@ -80,16 +80,14 @@ function getPageNameAndLink($db){
         $page['link'] = substr($page['link'], strpos($page['link'], '/', 1)+1);
     endif;
     try{
-        $db->beginTransaction();
-        $sql = $db->query("SELECT name FROM $page[tbl_name] WHERE link='$page[link]'");
-        $db->commit();
+        $sql = $db->prepare("SELECT name FROM $page[tbl_name] WHERE link=?");
+        $sql->execute(array($page['link']));
         $sql->setFetchMode(PDO::FETCH_ASSOC);
         $row = $sql->fetch();
         $page['name'] = $row['name'];
         return $page;
     }
     catch(PDOException $e){
-        $db->rollback();
         $error = "Ошибка при доступе к базе данных: <br>in file: ".$e->getFile()."; line: ".$e->getLine().";<br>error: ".$e->getMessage();
         return $error;
     }
@@ -98,17 +96,33 @@ function getPageNameAndLink($db){
 /* Get page content from DB */
 function getPageContent($db, $pageData){
     try{
-        $db->beginTransaction();
-        $sql = $db->query("SELECT page_content FROM $pageData[tbl_name] WHERE link='$pageData[link]'");
-        $db->commit();
+        $sql = $db->prepare("SELECT page_content FROM $pageData[tbl_name] WHERE link=?");
+        $sql->execute(array($pageData['link']));
         $sql->setFetchMode(PDO::FETCH_ASSOC);
         $row = $sql->fetch();
         return $row['page_content'];
     }
     catch(PDOException $e){
-        $db->rollback();
         $error = "Ошибка при доступе к базе данных: <br>in file: ".$e->getFile()."; line: ".$e->getLine().";<br>error: ".$e->getMessage();
         return $error;
     }
+}
+
+/* get list of pages */
+function getPagesList($db){
+    try{
+        $result = $db->prepare("SELECT page_id, name FROM tbl_pages WHERE admin=?");
+        $result->execute(array(0));
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $row_pages = $result->fetchAll();
+    }
+    catch(PDOException $e){
+        die("Ошибка при доступе к базе данных: <br>in file: ".$e->getFile()."; line: ".$e->getLine().";<br>error: ".$e->getMessage());
+    }
+    echo '<option value="" selected> - - - - - - - Не выбрано - - - - - - - </option>';
+    foreach($row_pages as $page){
+        echo "\n\t\t\t\t","<option value='$page[page_id]'>$page[name]</option>";
+    }
+    echo "\n";
 }
 ?>

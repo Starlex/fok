@@ -22,7 +22,8 @@ abbr{
 	border-bottom: 1px dashed blue;
 	color: #000080;
 }
-acronym{
+form abbr{
+	border-bottom: 0;
 	color: #20B2AA;
 	font-weight: bold;
 }
@@ -59,6 +60,9 @@ label{
 		display: inline-block;
 		padding: 5px;
 		width: 300px;
+	}
+	label select{
+		width: 310px;
 	}
 	label textarea{
 		display: block;
@@ -241,6 +245,7 @@ label{
 /* required fields */
 .req{
 	color:red;
+	font-size: 17px;
 	font-style: italic;
 }
 /*positioning text in center*/
