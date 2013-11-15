@@ -7,7 +7,7 @@ if(isset($_GET['page'])){
 	if('/home-page/' === $_GET['page']){
 		require_once '/pages/main.php';
 	}
-	if('/admin/' === $_GET['page']){
+	if(0 === strpos($_GET['page'], '/admin')){
 		session_start();
 		require_once '/block/auth.php';
 		require_once '/pages/admin.php';
