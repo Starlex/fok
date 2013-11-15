@@ -11,7 +11,7 @@ try{
     $row_sub_pages = $sub_pages->fetchAll();
 }
 catch(PDOException $e){
-    die("Ошибка при доступе к базе данных: <br>in file: ".$e->getFile()."; line: ".$e->getLine().";<br>error: ".$e->getMessage());
+    header('Location:/500');
 }
 
 require_once "/block/leftblock.php";
@@ -26,7 +26,7 @@ $pageData = array(
 <div class="container">
 
 	<?php
-    echo '<p><a href="/admin/">asdfkjsaldfjasldkfj</a></p>';
+    echo '<p><a href="/admin/">Админка</a></p>';
 	echo getPageContent($db, $pageData);
 	?>
 

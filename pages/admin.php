@@ -12,7 +12,7 @@ try{
     $row_sub_pages = $sub_pages->fetchAll();
 }
 catch(PDOException $e){
-    die("Ошибка при доступе к базе данных: <br>in file: ".$e->getFile()."; line: ".$e->getLine().";<br>error: ".$e->getMessage());
+    header('Location:/500');
 }
 
 require_once "/block/leftblock.php";
@@ -23,6 +23,9 @@ require_once "/block/topblock.php";
 	<?php
     if('/admin/' === $_GET['page'] and !isset($_GET['var1'])){
         require_once '/block/addpage.php';
+    }
+    elseif('/admin-update/' === $_GET['page'] and !isset($_GET['var1'])){
+        require_once '/block/updatepage.php';
     }
 ?>
 </div>

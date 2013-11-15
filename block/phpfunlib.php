@@ -1,4 +1,17 @@
 <?php
+/* show errors */
+function showMsg($string, $link, $text='Назад'){
+    ?>
+    <p>
+        <b class='req'><?=$string?></b>
+    </p>
+    <a href='<?=$link?>'><?=$text?></a>
+</div>
+    <?php
+    require_once '/block/footer.php';
+    exit;
+}
+
 /* Change cyrillic symbols to latin */
 function cyrillic2latin($str){
 	$converter = array(
@@ -80,44 +93,42 @@ function getPageNameAndLink($db){
         $page['link'] = substr($page['link'], strpos($page['link'], '/', 1)+1);
     endif;
     try{
-        $sql = $db->prepare("SELECT name FROM $page[tbl_name] WHERE link=?");
-        $sql->execute(array($page['link']));
-        $sql->setFetchMode(PDO::FETCH_ASSOC);
-        $row = $sql->fetch();
+        $query = $db->prepare("SELECT name FROM $page[tbl_name] WHERE link=?");
+        $query->execute(array($page['link']));
+        $query->setFetchMode(PDO::FETCH_ASSOC);
+        $row = $query->fetch();
         $page['name'] = $row['name'];
         return $page;
     }
     catch(PDOException $e){
-        $error = "Ошибка при доступе к базе данных: <br>in file: ".$e->getFile()."; line: ".$e->getLine().";<br>error: ".$e->getMessage();
-        return $error;
+        header('Location:/500');
     }
 }
 
 /* Get page content from DB */
 function getPageContent($db, $pageData){
     try{
-        $sql = $db->prepare("SELECT page_content FROM $pageData[tbl_name] WHERE link=?");
-        $sql->execute(array($pageData['link']));
-        $sql->setFetchMode(PDO::FETCH_ASSOC);
-        $row = $sql->fetch();
+        $query = $db->prepare("SELECT page_content FROM $pageData[tbl_name] WHERE link=?");
+        $query->execute(array($pageData['link']));
+        $query->setFetchMode(PDO::FETCH_ASSOC);
+        $row = $query->fetch();
         return $row['page_content'];
     }
     catch(PDOException $e){
-        $error = "Ошибка при доступе к базе данных: <br>in file: ".$e->getFile()."; line: ".$e->getLine().";<br>error: ".$e->getMessage();
-        return $error;
+        header('Location:/500');
     }
 }
 
 /* get list of pages */
 function getPagesList($db){
     try{
-        $result = $db->prepare("SELECT page_id, name FROM tbl_pages WHERE admin=?");
-        $result->execute(array(0));
-        $result->setFetchMode(PDO::FETCH_ASSOC);
-        $row_pages = $result->fetchAll();
+        $query = $db->prepare("SELECT page_id, name FROM tbl_pages WHERE admin=?");
+        $query->execute(array(0));
+        $query->setFetchMode(PDO::FETCH_ASSOC);
+        $row_pages = $query->fetchAll();
     }
     catch(PDOException $e){
-        die("Ошибка при доступе к базе данных: <br>in file: ".$e->getFile()."; line: ".$e->getLine().";<br>error: ".$e->getMessage());
+        header('Location:/500');
     }
     echo '<option value="" selected> - - - - - - - Не выбрано - - - - - - - </option>';
     foreach($row_pages as $page){

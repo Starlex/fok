@@ -1,4 +1,5 @@
 <?php
+$error = '';
 if(isset($_POST['send'])){
 	$login = $_POST['login'];
 	$password = md5($_POST['password']);
@@ -9,7 +10,7 @@ if(isset($_POST['send'])){
 		$num = $result->fetchColumn();
 	}
 	catch(PDOException $e){
-		die("Ошибка при доступе к базе данных: <br>in file: ".$e->getFile()."; line: ".$e->getLine().";<br>error: ".$e->getMessage());
+		header('Location:/500');
 	}
 	if($num > 0){
 		session_start();
@@ -17,7 +18,7 @@ if(isset($_POST['send'])){
 		header('Location:/admin/');
 	}
 	else{
-		echo "<b class='req'>Не существует такого пользователя</b>";
+		$error = "<b class='req'>Пользователь не найден. Проверьте логин/пароль.</b>";
 	}
 }
 
@@ -25,6 +26,7 @@ if('/login/' === $_GET['page']){
 ?>
 
 	<fieldset>
+		<?=$error?>
 		<legend>Авторизация пользователя</legend>
 		<form name="flogin" method='post' action="">
 			<label for="">
