@@ -24,7 +24,7 @@ require_once "/block/topblock.php";
     if('/admin/' === $_GET['page'] and !isset($_GET['var1'])){
         require_once '/block/addpage.php';
     }
-    elseif('/admin-update/' === $_GET['page'] and !isset($_GET['var1'])){
+    elseif('/admin-update/' === $_GET['page']){
         require_once '/block/updatepage.php';
     }
 ?>

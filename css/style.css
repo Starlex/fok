@@ -64,7 +64,7 @@ label{
 	label select{
 		width: 310px;
 	}
-/*	label textarea{
+	label textarea{
 		display: block;
 		border: 1px solid;
 		box-shadow: 5px 5px 3px #757575;
@@ -73,7 +73,7 @@ label{
 		height: 400px;
 		resize: none;
 		width: 100%;
-	}*/
+	}
 
 .button_panel{
 	margin-left: 220px;

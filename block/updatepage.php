@@ -1,7 +1,8 @@
 <?php
-/* PHP code*/
+/* PHP part of the page */
 
-// create page/subpage functional
+
+// update page/subpage functional
 if(isset($_POST['addBtn'])){
     if(isset($_POST['page']) and isset($_POST['subPage'])){
         showMsg('Одновременно можно создать только одну страницу', '/admin/');
@@ -58,27 +59,42 @@ if(isset($_POST['addBtn'])){
 }
 ?>
 
-<!-- html code -->
+<!-- html part of the page-->
+
+
+<script type="text/javascript">
+    
+</script>
+
 
 <form name="update" method="post" action="">
     <label>
-        <input type="checkbox" name="page" id="updP" value="1" onClick="showDiv('updP', 'updPage', 'updP')">Редактировать страницу
+        <input type="checkbox" name="page" id="updP" value="1" onChange="showDiv('updP', 'updPage', 'updSP')">Редактировать страницу
     </label>
     <label>
-        <input type="checkbox" name="subPage" id="updP" value="2" onClick="showDiv('updP', 'updSubPage', 'updP')">Редактировать подстраницу
+        <input type="checkbox" name="subPage" id="updSP" value="2" onChange="showDiv('updSP', 'updSubPage', 'updP')">Редактировать подстраницу
     </label>
+    <!-- div for upgate page -->
     <div class="hide" id="updPage">
         <label>
-            <abbr title="Имя создаваемой страницы">(?)</abbr>
-            <span><b class="req">*</b> Имя страницы</span>
-            <input name="pageName" type="text" value="">
+            <abbr title="Выберите страницу для редактирования">(?)</abbr>
+            <span>Редактируемая страница</span>
+            <select name="pageId" id="updPageId">
+                <?php getPagesList($db) ?>
+            </select>
         </label>
+
         <label>
-            <abbr title='Содержимое создаваемой страницы'>(?)</abbr>
+            <abbr title="Если вы не хотите менять имя страницы, то оставьте его неизменным">(?)</abbr>
+            <span><b class="req">*</b> Имя страницы</span>
+            <input name="pageName" type="text" id="pName">
+        <label>
+            <abbr title='Содержимое страницы'>(?)</abbr>
             <span>Содержимое страницы</span>
-            <textarea name="pageContent" rows="10"></textarea>
+            <textarea class='ckeditor' name="pageContent" rows="10" id='pContent'></textarea>
         </label>
     </div>
+    <!-- dib for update subpage -->
     <div class="hide" id="updSubPage">
         <label>
             <abbr title="Выберите родительскую страницу">(?)</abbr>
@@ -88,16 +104,23 @@ if(isset($_POST['addBtn'])){
             </select>
         </label>
         <label>
-            <abbr title="Имя создаваемой подстраницы">(?)</abbr>
+            <abbr title="Выберите подстраницу которую хотите отредактировать">(?)</abbr>
+            <span>Имя подстраницы</span>
+            <select name="" id="updSubpageId">
+                <?php getPagesList($db, 'tbl_sub_pages', 4); ?>
+            </select>
+        </label>
+        <label>
+            <abbr title="Если вы не хотите менять имя подстраницы, то оставьте его неизменным">(?)</abbr>
             <span><b class="req">*</b> Имя подстраницы</span>
             <input name="subPageName" type="text" value="">
         </label>
         <label>
-            <abbr title='Содержимое создаваемой подстраницы'>(?)</abbr>
+            <abbr title='Содержимое подстраницы'>(?)</abbr>
             <span>Содержимое подстраницы</span>
-            <textarea name="subPageContent" rows="10"></textarea>
+            <textarea class='ckeditor' name="subPageContent" rows="10"></textarea>
         </label>
     </div>
-    <input class="button" name="updBtn" type="submit" id="sendForm" value="Создать" disabled>
+    <input class="button" name="updBtn" type="submit" id="sendForm" value="Сохранить" disabled>
     <input class="button" type="reset" value="Очистить поля">
 </form>

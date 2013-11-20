@@ -117,9 +117,15 @@ function getPageContent($db, $pageData){
 }
 
 /* get list of pages */
-function getPagesList($db){
+function getPagesList($db, $tbl_name = 'tbl_pages', $page_id = ''){
+    if('' === $page_id){
+        $txt = "";
+    }
+    else{
+        $txt = " AND page_id = '$page_id'";
+    }
     try{
-        $query = $db->prepare("SELECT page_id, name FROM tbl_pages WHERE admin=?");
+        $query = $db->prepare("SELECT page_id, name FROM $tbl_name WHERE admin=?$txt");
         $query->execute(array(0));
         $query->setFetchMode(PDO::FETCH_ASSOC);
         $row_pages = $query->fetchAll();

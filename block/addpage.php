@@ -76,7 +76,7 @@ if(isset($_POST['addBtn'])){
         <label>
             <abbr title='Содержимое создаваемой страницы. Можно оставить пустым и заполнить потом с помощью пункта меню "Редактировать"'>(?)</abbr>
             <span>Содержимое страницы</span>
-            <textarea name="pageContent" rows="10"></textarea>
+            <textarea class='ckeditor' name="pageContent" rows="10"></textarea>
         </label>
     </div>
     <div class="hide" id="addSubPage">
@@ -95,7 +95,7 @@ if(isset($_POST['addBtn'])){
         <label>
             <abbr title='Содержимое создаваемой подстраницы. Можно оставить пустым и заполнить потом с помощью пункта меню "Редактировать"'>(?)</abbr>
             <span>Содержимое подстраницы</span>
-            <textarea name="subPageContent" rows="10"></textarea>
+            <textarea class='ckeditor' name="subPageContent" rows="10"></textarea>
         </label>
     </div>
     <input class="button" name="addBtn" type="submit" id="sendForm" value="Создать" disabled>

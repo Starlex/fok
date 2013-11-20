@@ -4,9 +4,6 @@ require_once '/block/phpfunlib.php';
 require_once '/block/header.php';
 
 if(isset($_GET['page'])){
-	if('/home-page/' === $_GET['page']){
-		require_once '/pages/main.php';
-	}
 	if(0 === strpos($_GET['page'], '/admin')){
 		session_start();
 		require_once '/block/auth.php';
