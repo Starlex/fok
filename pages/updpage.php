@@ -5,19 +5,36 @@ try{
 	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 }
 catch(PDOException $e){
-	echo 'database error';
+	echo '<h1>Internal server error</h1>';
+	exit;
+}
+if(isset($_POST['page_id'])){
+	try{
+		$query = $db->prepare("SELECT name, page_content FROM tbl_pages WHERE page_id=?");
+		$query->execute(array($_POST['page_id']));
+		$query->setFetchMode(PDO::FETCH_ASSOC);
+		$row = $query->fetch();
+		echo json_encode($row);
+	}
+	catch(PDOException $e){
+		echo '<h1>Internal server error</h1>';
+		exit;
+	}	
+}
+elseif(isset($_POST['subpage_id'])){
+	try{
+		$query = $db->prepare("SELECT name, page_content FROM tbl_sub_pages WHERE sub_page_id=?");
+		$query->execute(array($_POST['subpage_id']));
+		$query->setFetchMode(PDO::FETCH_ASSOC);
+		$row = $query->fetch();
+		echo json_encode($row);
+	}
+	catch(PDOException $e){
+		echo '<h1>Internal server error</h1>';
+		exit;
+	}
 }
 
-try{
-	$query = $db->prepare("SELECT * FROM tbl_pages WHERE page_id=?");
-	$query->execute(array($_POST['page_id']));
-	$query->setFetchMode(PDO::FETCH_ASSOC);
-	$row = $query->fetchAll();
-	echo json_encode($row[0]);
-}
-catch(PDOException $e){
-	//echo 'database error';
-	echo $e->getFile()."<br>".$e->getLine()."<br>".$e->getMessage();
-}
+
 
 ?>

@@ -70,7 +70,7 @@ if(isset($_POST['addBtn'])){
     <div class="hide" id="addPage">
         <label>
             <abbr title="Имя создаваемой страницы">(?)</abbr>
-            <span><b class="req">*</b> Имя страницы</span>
+            <span><b class="req">*</b>Имя страницы</span>
             <input name="pageName" type="text" value="">
         </label>
         <label>
@@ -82,14 +82,14 @@ if(isset($_POST['addBtn'])){
     <div class="hide" id="addSubPage">
         <label>
             <abbr title="Выберите родительскую страницу">(?)</abbr>
-            <span><b class="req">*</b> Имя страницы</span>
+            <span><b class="req">*</b>Имя страницы</span>
             <select name="parrentId">
                 <?php getPagesList($db); ?>
             </select>
         </label>
         <label>
             <abbr title="Имя создаваемой подстраницы">(?)</abbr>
-            <span><b class="req">*</b> Имя подстраницы</span>
+            <span><b class="req">*</b>Имя подстраницы</span>
             <input name="subPageName" type="text" value="">
         </label>
         <label>
@@ -98,6 +98,8 @@ if(isset($_POST['addBtn'])){
             <textarea class='ckeditor' name="subPageContent" rows="10"></textarea>
         </label>
     </div>
-    <input class="button" name="addBtn" type="submit" id="sendForm" value="Создать" disabled>
-    <input class="button" type="reset" value="Очистить поля">
+    <div class="hide" id="btn_div">
+        <input class="button" name="sendBtn" type="submit" value="Создать">
+        <input class="button" type="reset" value="Очистить поля">
+    </div>
 </form>

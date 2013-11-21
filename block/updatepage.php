@@ -78,49 +78,47 @@ if(isset($_POST['addBtn'])){
     <div class="hide" id="updPage">
         <label>
             <abbr title="Выберите страницу для редактирования">(?)</abbr>
-            <span>Редактируемая страница</span>
+            <span><b class="req">*</b>Выберите страницу</span>
             <select name="pageId" id="updPageId">
                 <?php getPagesList($db) ?>
             </select>
         </label>
-
-        <label>
-            <abbr title="Если вы не хотите менять имя страницы, то оставьте его неизменным">(?)</abbr>
-            <span><b class="req">*</b> Имя страницы</span>
-            <input name="pageName" type="text" id="pName">
-        <label>
-            <abbr title='Содержимое страницы'>(?)</abbr>
-            <span>Содержимое страницы</span>
-            <textarea class='ckeditor' name="pageContent" rows="10" id='pContent'></textarea>
-        </label>
+        <div class="hide" id="pagedata">
+            <label>
+                <abbr title="Если вы не хотите менять имя страницы, то оставьте его неизменным">(?)</abbr>
+                <span><b class="req">*</b>Имя страницы</span>
+                <input name="pageName" type="text" id="pName">
+            <label>
+                <abbr title='Содержимое страницы'>(?)</abbr>
+                <span>Содержимое страницы</span>
+                <textarea class='ckeditor' name="pageContent" rows="10" id='pContent'></textarea>
+            </label>
+        </div>
     </div>
     <!-- dib for update subpage -->
     <div class="hide" id="updSubPage">
         <label>
-            <abbr title="Выберите родительскую страницу">(?)</abbr>
-            <span><b class="req">*</b> Имя страницы</span>
-            <select name="parrentId">
-                <?php getPagesList($db); ?>
-            </select>
-        </label>
-        <label>
-            <abbr title="Выберите подстраницу которую хотите отредактировать">(?)</abbr>
-            <span>Имя подстраницы</span>
+            <abbr title="Выберите подстраницу которую хотите отредактировать. Шаблон названия страницы: *родительская страница* --> *подстраница*">(?)</abbr>
+            <span><b class="req">*</b>Выберите подстраницу</span>
             <select name="" id="updSubpageId">
-                <?php getPagesList($db, 'tbl_sub_pages', 4); ?>
+                <?php getSubpagesList($db) ?>
             </select>
         </label>
-        <label>
-            <abbr title="Если вы не хотите менять имя подстраницы, то оставьте его неизменным">(?)</abbr>
-            <span><b class="req">*</b> Имя подстраницы</span>
-            <input name="subPageName" type="text" value="">
-        </label>
-        <label>
-            <abbr title='Содержимое подстраницы'>(?)</abbr>
-            <span>Содержимое подстраницы</span>
-            <textarea class='ckeditor' name="subPageContent" rows="10"></textarea>
-        </label>
+        <div class="hide" id="subpagedata">
+            <label>
+                <abbr title="Если вы не хотите менять имя подстраницы, то оставьте его неизменным">(?)</abbr>
+                <span><b class="req">*</b> Имя подстраницы</span>
+                <input name="subPageName" type="text" id="spName">
+            </label>
+            <label>
+                <abbr title='Содержимое подстраницы'>(?)</abbr>
+                <span>Содержимое подстраницы</span>
+                <textarea class='ckeditor' name="subPageContent" rows="10" id="spContent"></textarea>
+            </label>
+        </div>
     </div>
-    <input class="button" name="updBtn" type="submit" id="sendForm" value="Сохранить" disabled>
-    <input class="button" type="reset" value="Очистить поля">
+    <div class='hide' id="btn_div">
+        <input class="button" name="sendBtn" type="submit" value="Сохранить">
+        <input class="button" type="reset" value="Очистить поля">
+    </div>
 </form>

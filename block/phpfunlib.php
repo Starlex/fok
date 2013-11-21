@@ -98,7 +98,8 @@ function getPageNameAndLink($db){
         return $page;
     }
     catch(PDOException $e){
-        header('Location:/500');
+        echo '<h1>Internal server error</h1>';
+        exit;
     }
 }
 
@@ -112,30 +113,49 @@ function getPageContent($db, $pageData){
         return $row['page_content'];
     }
     catch(PDOException $e){
-        header('Location:/500');
+        echo '<h1>Internal server error</h1>';
+        exit;
     }
 }
 
 /* get list of pages */
-function getPagesList($db, $tbl_name = 'tbl_pages', $page_id = ''){
-    if('' === $page_id){
-        $txt = "";
-    }
-    else{
-        $txt = " AND page_id = '$page_id'";
-    }
+function getPagesList($db){
     try{
-        $query = $db->prepare("SELECT page_id, name FROM $tbl_name WHERE admin=?$txt");
+        $query = $db->prepare("SELECT page_id, name FROM tbl_pages WHERE admin=?");
         $query->execute(array(0));
         $query->setFetchMode(PDO::FETCH_ASSOC);
         $row_pages = $query->fetchAll();
     }
     catch(PDOException $e){
-        header('Location:/500');
+        echo '<h1>Internal server error</h1>';
+        exit;
     }
     echo '<option value="" selected> - - - - - - - Не выбрано - - - - - - - </option>';
     foreach($row_pages as $page){
         echo "\n\t\t\t\t","<option value='$page[page_id]'>$page[name]</option>";
+    }
+    echo "\n";
+}
+
+function getSubpagesList($db){
+    $sql = "SELECT sub_page_id, sp.name spn, p.name pn 
+            FROM tbl_sub_pages sp
+            LEFT JOIN tbl_pages p
+            ON sp.page_id=p.page_id
+            WHERE sp.admin=?";
+    try{
+        $query = $db->prepare($sql);
+        $query->execute(array(0));
+        $query->setFetchMode(PDO::FETCH_ASSOC);
+        $row_sub_pages = $query->fetchAll();
+    }
+    catch(PDOException $e){
+        echo '<h1>Internal server error</h1>';
+        exit;
+    }
+    echo '<option value="" selected> - - - - - - - Не выбрано - - - - - - - </option>';
+    foreach($row_sub_pages as $sub_page){
+        echo "\n\t\t\t\t","<option value='$sub_page[sub_page_id]'>{$sub_page['pn']} --> {$sub_page['spn']}</option>";
     }
     echo "\n";
 }
