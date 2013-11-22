@@ -14,13 +14,14 @@ catch(PDOException $e){
     header('Location:/500');
 }
 
+
 require_once "/block/leftblock.php";
 require_once "/block/topblock.php";
 
 $pageData = array(
-					'link' => getPageNameAndLink($db)['link'],
-					'tbl_name' => getPageNameAndLink($db)['tbl_name']
-				);
+                    'link' => getPageNameAndLink($db)['link'],
+                    'tbl_name' => getPageNameAndLink($db)['tbl_name']
+                );
 
 $query =$db->prepare("SELECT COUNT(*) FROM $pageData[tbl_name] WHERE link=?");
 $query->execute(array($pageData['link']));
@@ -33,10 +34,33 @@ if(0 === (int) $num){
 
 <div class="container">
 
-	<?php
+    <?php
+    
     echo '<p><a href="/admin/">Админка</a></p>';
-	echo getPageContent($db, $pageData);
-	?>
+    echo getPageContent($db, $pageData);
+    if(isset($_GET['page']) and !isset($_GET['var1'])){
+        try{
+            $query = $db->prepare("SELECT sp.link spl, p.link pl, sp.name spn, p.name pn 
+                                    FROM tbl_sub_pages sp
+                                    LEFT JOIN tbl_pages p
+                                    ON sp.page_id=p.page_id
+                                    WHERE p.link=?");
+            $query->execute(array($_GET['page']));
+            $query->setFetchMode(PDO::FETCH_ASSOC);
+            $row = $query->fetchAll();
+            if(!empty($row)){
+                echo "<h2>{$row[0]['pn']}:</h2>";
+            }
+            foreach ($row as $page) {
+                echo "<h4><a href='$page[pl]$page[spl]'>$page[spn]</a></h4>";
+            }
+        }
+        catch(PDOException $e){
+            header('Location:/500');
+        }
+    }
+
+    ?>
 
 </div>
 
