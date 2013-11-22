@@ -3,36 +3,42 @@
 
 
 // update page/subpage functional
-if(isset($_POST['addBtn'])){
+if(isset($_POST['sendBtn'])){
     if(isset($_POST['page']) and isset($_POST['subPage'])){
-        showMsg('Одновременно можно создать только одну страницу', '/admin/');
+        showMsg('Одновременно можно создать только одну страницу', '/admin-update/');
     }
     if(isset($_POST['page']) and !isset($_POST['subPage'])){
-        /* data for create page functional */
-        if('' === $_POST['pageName']){
-            showMsg('Вы не заполнили обязательные поля', '/admin/');
+        /* update page functional */
+        if('' === $_POST['pageName'] or '' === $_POST['pageId']){
+            showMsg('Вы не заполнили обязательные поля', '/admin-update/');
         }
         $page = array(
+                        'pageId' => (int)$_POST['pageId'],
                         'name' => $_POST['pageName'],
                         'link' => strtolower('/'.cyrillic2latin($_POST['pageName']).'/'),
                         'content' => $_POST['pageContent']
                     );
-        $sql_check = "SELECT count(*) FROM tbl_pages WHERE name=? OR link=?";
-        $sql_insert = "INSERT INTO tbl_pages(link,name,page_content) VALUES ('$page[link]','$page[name]','$page[content]')";
+        $sql_check = "SELECT count(*) FROM tbl_pages WHERE (name=? OR link=?) AND page_id != $page[pageId]";
+        $sql_insert = "UPDATE tbl_pages SET link='$page[link]', name='$page[name]', page_content='$page[content]' WHERE page_id='$page[pageId]' ";
     }
     elseif(!isset($_POST['page']) and isset($_POST['subPage'])){
-        /* data for create subpage functional */
-        if('' === $_POST['parrentId'] or '' === $_POST['subPageName']){
-            showMsg('Вы не заполнили обязательные поля', '/admin/');
+
+
+
+        /* update subpage functional */
+        if('' === $_POST['subpageId'] or '' === $_POST['subPageName']){
+            showMsg('Вы не заполнили обязательные поля', '/admin-update/');
         }
         $page = array(
-                        'parrentId' => (int)$_POST['parrentId'],
+                        'parrentId' => (int)$_POST['parrent'],
+                        'pageId' => (int)$_POST['subpageId'],
                         'name' => $_POST['subPageName'],
                         'link' => strtolower(cyrillic2latin($_POST['subPageName']).'/'),
                         'content' => $_POST['subPageContent']
                     );
-        $sql_check = "SELECT count(*) FROM tbl_sub_pages WHERE (name=? OR link=?) AND page_id='$page[parrentId]'";
-        $sql_insert = "INSERT INTO tbl_sub_pages(link,name,page_content,page_id) VALUES ('$page[link]','$page[name]','$page[content]', '$page[parrentId]')";
+
+        $sql_check = "SELECT count(*) FROM tbl_sub_pages WHERE ((name=? OR link=?) AND page_id='$page[parrentId]') AND sub_page_id != $page[pageId]";
+        $sql_insert = "UPDATE tbl_sub_pages SET link='$page[link]', name='$page[name]', page_content='$page[content]' WHERE sub_page_id=? ";
     }
 
     try{
@@ -46,26 +52,20 @@ if(isset($_POST['addBtn'])){
     if(0 === (int)$num){
         try{
             $query = $db->prepare($sql_insert);
-            $query->execute();
-            echo "<h2>Страница успешно добавлена</h2>";
+            $query->execute(array($page['pageId']));
+            echo "<h2>Страница успешно отредактирована</h2>";
         }
         catch(PDOException $e){
-            showMsg('Не удалось добавить страницу. Попробуйте позже', '/admin/');
+            showMsg('Не удалось добавить страницу. Попробуйте позже', '/admin-update/');
         }
     }
     else{
-        showMsg('Невозможно создать страницу с таким именем', '/admin/');
+        showMsg('Невозможно создать страницу с таким именем', '/admin-update/');
     }
 }
 ?>
 
 <!-- html part of the page-->
-
-
-<script type="text/javascript">
-    
-</script>
-
 
 <form name="update" method="post" action="">
     <label>
@@ -97,10 +97,11 @@ if(isset($_POST['addBtn'])){
     </div>
     <!-- dib for update subpage -->
     <div class="hide" id="updSubPage">
+        <input type="hidden" name="parrent" id="parrentId">
         <label>
             <abbr title="Выберите подстраницу которую хотите отредактировать. Шаблон названия страницы: *родительская страница* --> *подстраница*">(?)</abbr>
             <span><b class="req">*</b>Выберите подстраницу</span>
-            <select name="" id="updSubpageId">
+            <select name="subpageId" id="updSubpageId">
                 <?php getSubpagesList($db) ?>
             </select>
         </label>

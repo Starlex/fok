@@ -138,7 +138,7 @@ function getPagesList($db){
 }
 
 function getSubpagesList($db){
-    $sql = "SELECT sub_page_id, sp.name spn, p.name pn 
+    $sql = "SELECT sub_page_id, sp.name spn, p.name pn
             FROM tbl_sub_pages sp
             LEFT JOIN tbl_pages p
             ON sp.page_id=p.page_id

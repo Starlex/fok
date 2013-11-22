@@ -2,12 +2,12 @@
 /* PHP code*/
 
 // create page/subpage functional
-if(isset($_POST['addBtn'])){
+if(isset($_POST['sendBtn'])){
     if(isset($_POST['page']) and isset($_POST['subPage'])){
         showMsg('Одновременно можно создать только одну страницу', '/admin/');
     }
     if(isset($_POST['page']) and !isset($_POST['subPage'])){
-        /* data for create page functional */
+        /* create page functional */
         if('' === $_POST['pageName']){
             showMsg('Вы не заполнили обязательные поля', '/admin/');
         }
@@ -20,7 +20,7 @@ if(isset($_POST['addBtn'])){
         $sql_insert = "INSERT INTO tbl_pages(link,name,page_content) VALUES ('$page[link]','$page[name]','$page[content]')";
     }
     elseif(!isset($_POST['page']) and isset($_POST['subPage'])){
-        /* data for create subpage functional */
+        /* create subpage functional */
         if('' === $_POST['parrentId'] or '' === $_POST['subPageName']){
             showMsg('Вы не заполнили обязательные поля', '/admin/');
         }

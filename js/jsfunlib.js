@@ -21,7 +21,7 @@ $(document).ready(function(){
     $('#updPageId').change(function(){
         $.ajax({
             type: "POST",
-            url: "/pages/updpage.php",
+            url: "/pages/ajax.php",
             data: "page_id="+$("#updPageId").val(),
             dataType: "json",
             success: function(data){
@@ -29,6 +29,7 @@ $(document).ready(function(){
                 	$("#pagedata").css("display", "none");
                     $("#pName").val("");
                     CKEDITOR.instances.pContent.setData("");
+
                 }
                 else{
                 	$("#pagedata").css("display", "block");
@@ -47,17 +48,19 @@ $(document).ready(function(){
 	$('#updSubpageId').change(function(){
 		$.ajax({
 			type: "POST",
-			url: "/pages/updpage.php",
+			url: "/pages/ajax.php",
 			data: "subpage_id="+$("#updSubpageId").val(),
 			dataType: "json",
 			success: function(data){
 				if(false === data){
 					$("#subpagedata").css("display", "none");
+					$("#parrentId").val("");
 	                $("#spName").val("");
 	                CKEDITOR.instances.spContent.setData("");
 				}
 				else{
 					$("#subpagedata").css("display", "block");
+					$("#parrentId").val(data.page_id);
 	                $("#spName").val(data.name);
 	                CKEDITOR.instances.spContent.setData(data.page_content);
 				}

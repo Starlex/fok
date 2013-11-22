@@ -27,6 +27,9 @@ require_once "/block/topblock.php";
     elseif('/admin-update/' === $_GET['page']){
         require_once '/block/updatepage.php';
     }
+    elseif('/admin-delete/' === $_GET['page']){
+        require_once '/block/deletepage.php';
+    }
 ?>
 </div>
 

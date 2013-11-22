@@ -23,7 +23,7 @@ if(isset($_POST['page_id'])){
 }
 elseif(isset($_POST['subpage_id'])){
 	try{
-		$query = $db->prepare("SELECT name, page_content FROM tbl_sub_pages WHERE sub_page_id=?");
+		$query = $db->prepare("SELECT name, page_content, page_id FROM tbl_sub_pages WHERE sub_page_id=?");
 		$query->execute(array($_POST['subpage_id']));
 		$query->setFetchMode(PDO::FETCH_ASSOC);
 		$row = $query->fetch();
