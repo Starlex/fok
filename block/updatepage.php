@@ -5,7 +5,7 @@
 // update page/subpage functional
 if(isset($_POST['sendBtn'])){
     if(isset($_POST['page']) and isset($_POST['subPage'])){
-        showMsg('Одновременно можно создать только одну страницу', '/admin-update/');
+        showMsg('Одновременно можно отредактировать только одну страницу', '/admin-update/');
     }
     if(isset($_POST['page']) and !isset($_POST['subPage'])){
         /* update page functional */
@@ -19,12 +19,9 @@ if(isset($_POST['sendBtn'])){
                         'content' => $_POST['pageContent']
                     );
         $sql_check = "SELECT count(*) FROM tbl_pages WHERE (name=? OR link=?) AND page_id != $page[pageId]";
-        $sql_insert = "UPDATE tbl_pages SET link='$page[link]', name='$page[name]', page_content='$page[content]' WHERE page_id='$page[pageId]' ";
+        $sql_update = "UPDATE tbl_pages SET link='$page[link]', name='$page[name]', page_content='$page[content]' WHERE page_id='$page[pageId]' ";
     }
     elseif(!isset($_POST['page']) and isset($_POST['subPage'])){
-
-
-
         /* update subpage functional */
         if('' === $_POST['subpageId'] or '' === $_POST['subPageName']){
             showMsg('Вы не заполнили обязательные поля', '/admin-update/');
@@ -38,7 +35,7 @@ if(isset($_POST['sendBtn'])){
                     );
 
         $sql_check = "SELECT count(*) FROM tbl_sub_pages WHERE ((name=? OR link=?) AND page_id='$page[parrentId]') AND sub_page_id != $page[pageId]";
-        $sql_insert = "UPDATE tbl_sub_pages SET link='$page[link]', name='$page[name]', page_content='$page[content]' WHERE sub_page_id=? ";
+        $sql_update = "UPDATE tbl_sub_pages SET link='$page[link]', name='$page[name]', page_content='$page[content]' WHERE sub_page_id=? ";
     }
 
     try{
@@ -51,16 +48,16 @@ if(isset($_POST['sendBtn'])){
     }
     if(0 === (int)$num){
         try{
-            $query = $db->prepare($sql_insert);
+            $query = $db->prepare($sql_update);
             $query->execute(array($page['pageId']));
             echo "<h2>Страница успешно отредактирована</h2>";
         }
         catch(PDOException $e){
-            showMsg('Не удалось добавить страницу. Попробуйте позже', '/admin-update/');
+            showMsg('Не удалось отредактировать страницу. Попробуйте позже', '/admin-update/');
         }
     }
     else{
-        showMsg('Невозможно создать страницу с таким именем', '/admin-update/');
+        showMsg('Страница с таким именем уже существует', '/admin-update/');
     }
 }
 ?>
@@ -120,6 +117,5 @@ if(isset($_POST['sendBtn'])){
     </div>
     <div class='hide' id="btn_div">
         <input class="button" name="sendBtn" type="submit" value="Сохранить">
-        <input class="button" type="reset" value="Очистить поля">
     </div>
 </form>

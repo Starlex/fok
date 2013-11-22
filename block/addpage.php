@@ -53,7 +53,7 @@ if(isset($_POST['sendBtn'])){
         }
     }
     else{
-        showMsg('Невозможно создать страницу с таким именем', '/admin/');
+        showMsg('Страница с таким именем уже существует', '/admin/');
     }
 }
 ?>
@@ -100,6 +100,5 @@ if(isset($_POST['sendBtn'])){
     </div>
     <div class="hide" id="btn_div">
         <input class="button" name="sendBtn" type="submit" value="Создать">
-        <input class="button" type="reset" value="Очистить поля">
     </div>
 </form>
