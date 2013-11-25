@@ -65,10 +65,10 @@ if(isset($_POST['sendBtn'])){
 
 <form name="delete" method="post" action="">
     <label>
-        <input type="checkbox" name="page" id="delP" value="1" onChange="showDiv('delP', 'delPage', 'delSP')">Удалить страницу
+        <input type="checkbox" name="page" id="delP" value="1" onChange="showDiv('#delP', '#delPage', '#delSP')">Удалить страницу
     </label>
     <label>
-        <input type="checkbox" name="subPage" id="delSP" value="2" onChange="showDiv('delSP', 'delSubPage', 'delP')">Удалить подстраницу
+        <input type="checkbox" name="subPage" id="delSP" value="2" onChange="showDiv('#delSP', '#delSubPage', '#delP')">Удалить подстраницу
     </label>
     <!-- div for delete page -->
     <div class="hide" id="delPage">

@@ -1,22 +1,18 @@
-function showDiv(chbID1, divID, chbID2){
-	var chb1 = document.getElementById(chbID1).checked;
-	var chb2 = document.getElementById(chbID2);
-	var div = document.getElementById(divID).style;
-	var btn = document.getElementById('btn_div').style;
-	if(true === chb1){
-		div.display = "block";
-		chb2.disabled = true;
-		btn.display = "block";
+function showDiv(chb1, div, chb2){
+	if('checked' === $(chb1).attr('checked')){
+		$(div).fadeIn();
+		$('#btn_div').fadeIn();		
+		$(chb2).attr('disabled', 'disable');
 	}
 	else{
-		div.display = "none";
-		chb2.disabled = false;
-		btn.display = "none";
+		$(div).fadeOut();
+		$('#btn_div').fadeOut();		
+		$(chb2).removeAttr('disabled');
 	}
 }
 
 // this function used in updating pages.
-// If fills name of page and page content accourdingly to selected page.
+// It fills name of page and page content accourdingly to selected page.
 $(document).ready(function(){
     $('#updPageId').change(function(){
         $.ajax({
@@ -26,13 +22,13 @@ $(document).ready(function(){
             dataType: "json",
             success: function(data){
                 if(false === data){
-                	$("#pagedata").css("display", "none");
+                	$("#pagedata").fadeOut();
                     $("#pName").val("");
                     CKEDITOR.instances.pContent.setData("");
 
                 }
                 else{
-                	$("#pagedata").css("display", "block");
+                	$("#pagedata").fadeIn();
                     $("#pName").val(data.name);
                     CKEDITOR.instances.pContent.setData(data.page_content);                        
                 }
@@ -43,7 +39,7 @@ $(document).ready(function(){
 });
 
 // this function used in updating subpages.
-// If fills name of subpage and subpage content accourdingly to selected page.
+// It fills name of parrent page, subpage and subpage content accourdingly to selected page.
 $(document).ready(function(){
 	$('#updSubpageId').change(function(){
 		$.ajax({
@@ -53,13 +49,13 @@ $(document).ready(function(){
 			dataType: "json",
 			success: function(data){
 				if(false === data){
-					$("#subpagedata").css("display", "none");
+					$("#subpagedata").fadeOut();
 					$("#parrentId").val("");
 	                $("#spName").val("");
 	                CKEDITOR.instances.spContent.setData("");
 				}
 				else{
-					$("#subpagedata").css("display", "block");
+					$("#subpagedata").fadeIn();
 					$("#parrentId").val(data.page_id);
 	                $("#spName").val(data.name);
 	                CKEDITOR.instances.spContent.setData(data.page_content);
