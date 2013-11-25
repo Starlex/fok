@@ -9,4 +9,5 @@ CKEDITOR.editorConfig = function( config ) {
 	// config.uiColor = '#AADC6E';
 	config.removePlugins = 'forms,div,iframe,pagebreak,flash,smiley,preview,showblocks,language';
 	config.removeButtons = 'Save,NewPage,Print,Templates';
+	config.filebrowserUploadUrl = '/pages/ckeupload.php';
 };

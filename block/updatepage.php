@@ -64,7 +64,7 @@ if(isset($_POST['sendBtn'])){
 
 <!-- html part of the page-->
 
-<form name="update" method="post" action="">
+<form name="update" method="post" action="/admin-update/">
     <label>
         <input type="checkbox" name="page" id="updP" value="1" onChange="showDiv('#updP', '#updPage', '#updSP')">Редактировать страницу
     </label>
@@ -85,6 +85,7 @@ if(isset($_POST['sendBtn'])){
                 <abbr title="Если вы не хотите менять имя страницы, то оставьте его неизменным">(?)</abbr>
                 <span><b class="req">*</b>Имя страницы</span>
                 <input name="pageName" type="text" id="pName">
+            </label>
             <label>
                 <abbr title='Содержимое страницы'>(?)</abbr>
                 <span>Содержимое страницы</span>

@@ -63,7 +63,7 @@ if(isset($_POST['sendBtn'])){
 
 <!-- html part of the page-->
 
-<form name="delete" method="post" action="">
+<form name="delete" method="post" action="/admin-delete/">
     <label>
         <input type="checkbox" name="page" id="delP" value="1" onChange="showDiv('#delP', '#delPage', '#delSP')">Удалить страницу
     </label>

@@ -60,7 +60,7 @@ if(isset($_POST['sendBtn'])){
 
 <!-- html code -->
 
-<form name="add" method="post" action="">
+<form name="add" method="post" action="/admin/">
     <label>
         <input type="checkbox" name="page" id="addP" value="1" onClick="showDiv('#addP', '#addPage', '#addSP')">Добавить страницу
     </label>
