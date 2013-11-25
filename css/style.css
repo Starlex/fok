@@ -9,7 +9,6 @@ body{
 	display: block;
 	margin: 10px auto;
 	position: relative;
-	/*outline: 1px solid;*/
 	width: 90%;
 }
 a{
@@ -90,7 +89,6 @@ label{
 .leftblock{
 	display: block;
 	float: left;
-	/*outline: 1px solid;*/
 	position: fixed left;
 	text-align: center;
 	width: 20%;
@@ -125,7 +123,6 @@ label{
 	float: left;
 	height: 20%;
 	margin-left: 30px;
-	/*outline: 1px solid red;*/
 	position: relative;
 	text-align: center;
 	width: 75%;
@@ -150,7 +147,6 @@ label{
 	float: left;
 	margin-left: 30px;
 	min-height: 50%;
-	/*outline: 1px solid yellow;*/
 	padding-left: 10px;
 	position: relative;
 	width: 75%;
@@ -163,7 +159,6 @@ label{
 	height: 10%;
 	margin-bottom: 50px;
 	margin-top: 30px;
-	/*outline: 1px solid;*/
 	position: fixed bottom;
 	width: 100%;
 }
@@ -190,7 +185,6 @@ label{
 	.v-menu li ul{
 		display: none;
 		position: absolute;
-		/*margin: -3.2% 0 0 20%;*/
 		margin: -36px 0 0 227px;
 		width: 20%;
 		z-index: 1;
