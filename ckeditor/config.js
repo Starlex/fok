@@ -8,5 +8,5 @@ CKEDITOR.editorConfig = function( config ) {
 	config.language = 'ru';
 	// config.uiColor = '#AADC6E';
 	config.removePlugins = 'forms,div,iframe,pagebreak,flash,smiley,preview,showblocks,language';
-	config.removeButtons = 'Save,NewPage,Print,Templates,Setlanguage';
+	config.removeButtons = 'Save,NewPage,Print,Templates';
 };
