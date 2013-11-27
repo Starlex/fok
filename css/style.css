@@ -1,6 +1,6 @@
 /*##################################   DEFAULT STYLE FOR ELEMENTS   ###############################*/
 html{
-	background-image: url(/img/background.gif);
+	background-color: #F5F5F5;
 	height: 100%;
 	position: absolute;
 	width: 100%;
@@ -10,6 +10,7 @@ body{
 	margin: 10px auto;
 	position: relative;
 	width: 90%;
+	height: 100%;
 }
 a{
 	color: black;
@@ -86,9 +87,6 @@ label{
 
 /*############################   MAIN STRUCTURE OF SITE   ############################*/
 /*LEFT BLOCK OF SITE: NVGU LOGO AND MENU*/
-.maindiv{
-	background-color: #FFFFFF;
-}
 .leftblock{
 	display: block;
 	float: left;

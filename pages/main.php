@@ -25,7 +25,7 @@ $pageData = array(
 
 $query =$db->prepare("SELECT COUNT(*) FROM $pageData[tbl_name] WHERE link=?");
 $query->execute(array($pageData['link']));
-echo $num = $query->fetchColumn();
+$num = $query->fetchColumn();
 if(0 === (int) $num){
     header('Location:/404');
 }
