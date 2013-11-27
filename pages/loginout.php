@@ -49,7 +49,7 @@ if('/login/' === $_GET['page']){
 elseif('/logout/' === $_GET['page']){
 	session_start();
 	session_destroy();
-	header('Location:/home-page/');
+	header('Location:/');
 }
 
 ?>

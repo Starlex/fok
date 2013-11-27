@@ -36,7 +36,7 @@ if(0 === (int) $num){
 
     <?php
     
-    echo '<p><a href="/admin/">Админка</a></p>';
+    // echo '<p><a href="/admin/">Админка</a></p>';
     echo getPageContent($db, $pageData);
     if(isset($_GET['page']) and !isset($_GET['var1'])){
         try{

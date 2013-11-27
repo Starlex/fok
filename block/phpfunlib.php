@@ -79,7 +79,7 @@ function drawMenu($db, $row_pages, $row_sub_pages, $vertical = true){
 
 /* Get page name and link from DB */
 function getPageNameAndLink($db){
-    $page = array('link' => '/home-page/', 'name' => '', 'tbl_name' => 'tbl_pages');
+    $page = array('link' => '/glavnaya/', 'name' => '', 'tbl_name' => 'tbl_pages');
     if(isset($_GET['page'])):
         $page['link'] = $_GET['page'];
         $page['tbl_name'] = 'tbl_pages';
