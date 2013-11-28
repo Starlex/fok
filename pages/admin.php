@@ -15,24 +15,24 @@ catch(PDOException $e){
     header('Location:/500');
 }
 
-require_once "/block/leftblock.php";
-require_once "/block/topblock.php";
+require_once "block/leftblock.php";
+require_once "block/topblock.php";
 ?>
 
 <div class="container">
 	<?php
     if('/admin/' === $_GET['page'] and !isset($_GET['var1'])){
-        require_once '/block/addpage.php';
+        require_once 'block/addpage.php';
     }
     elseif('/admin-update/' === $_GET['page']){
-        require_once '/block/updatepage.php';
+        require_once 'block/updatepage.php';
     }
     elseif('/admin-delete/' === $_GET['page']){
-        require_once '/block/deletepage.php';
+        require_once 'block/deletepage.php';
     }
 ?>
 </div>
 
 <?php
-require_once "/block/bottomblock.php";
+require_once "block/bottomblock.php";
 ?>

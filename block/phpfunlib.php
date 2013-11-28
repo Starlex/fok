@@ -74,7 +74,6 @@ function drawMenu($db, $row_pages, $row_sub_pages, $vertical = true){
         endforeach;
     echo "\n\t\t", "</ul>",
     "\n\t", "</div>";
-
 }
 
 /* Get page name and link from DB */

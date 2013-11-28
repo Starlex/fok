@@ -64,12 +64,12 @@ if(isset($_POST['sendBtn'])){
 
 <!-- html part of the page-->
 
-<form name="update" method="post" action="/admin-update/">
+<form name="update" method="post" action="/admin-update/" id="updForm">
     <label>
-        <input type="checkbox" name="page" id="updP" value="1" onChange="showDiv('#updP', '#updPage', '#updSP')">Редактировать страницу
+        <input type="checkbox" name="page" id="updP" value="1" onChange="showDiv('#updP','#updPage','#updSP','updForm')">Редактировать страницу
     </label>
     <label>
-        <input type="checkbox" name="subPage" id="updSP" value="2" onChange="showDiv('#updSP', '#updSubPage', '#updP')">Редактировать подстраницу
+        <input type="checkbox" name="subPage" id="updSP" value="2" onChange="showDiv('#updSP','#updSubPage','#updP')">Редактировать подстраницу
     </label>
     <!-- div for upgate page -->
     <div class="hide" id="updPage">

@@ -1,4 +1,5 @@
-function showDiv(chb1, div, chb2){
+function showDiv(chb1, div, chb2, form){
+	var cke = $('.ckeditor').attr('name');
 	if('checked' === $(chb1).attr('checked')){
 		$(div).fadeIn();
 		$('#btn_div').fadeIn();		
@@ -25,7 +26,6 @@ $(document).ready(function(){
                 	$("#pagedata").fadeOut();
                     $("#pName").val("");
                     CKEDITOR.instances.pContent.setData("");
-
                 }
                 else{
                 	$("#pagedata").fadeIn();

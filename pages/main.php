@@ -15,12 +15,14 @@ catch(PDOException $e){
 }
 
 
-require_once "/block/leftblock.php";
-require_once "/block/topblock.php";
+require_once "block/leftblock.php";
+require_once "block/topblock.php";
+
+extract(getPageNameAndLink($db));
 
 $pageData = array(
-                    'link' => getPageNameAndLink($db)['link'],
-                    'tbl_name' => getPageNameAndLink($db)['tbl_name']
+                    'link' => $link,
+                    'tbl_name' => $tbl_name
                 );
 
 $query =$db->prepare("SELECT COUNT(*) FROM $pageData[tbl_name] WHERE link=?");
@@ -36,7 +38,7 @@ if(0 === (int) $num){
 
     <?php
     
-    // echo '<p><a href="/admin/">Админка</a></p>';
+    echo '<p><a href="/admin/">Админка</a></p>';
     echo getPageContent($db, $pageData);
     if(isset($_GET['page']) and !isset($_GET['var1'])){
         try{
@@ -65,5 +67,5 @@ if(0 === (int) $num){
 </div>
 
 <?php
-require_once "/block/bottomblock.php";
+require_once "block/bottomblock.php";
 ?>
