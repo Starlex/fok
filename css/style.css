@@ -18,10 +18,6 @@ a{
 	font-weight: normal;
 	text-decoration: underline;
 }
-abbr{
-	border-bottom: 1px dashed blue;
-	color: #000080;
-}
 form abbr{
 	border-bottom: 0;
 	color: #20B2AA;
@@ -137,7 +133,9 @@ label{
 		width: 65%;
 	}
 		.orgname{
-			font-size: 2em;
+			color: #000080;
+			font-size: 1.5em;
+			line-height: 1.7;
 			text-transform: uppercase;
 		}
 		.pagename{
