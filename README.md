@@ -7,7 +7,7 @@ Developer of site: Starostenko Alexey<br>
 Owner of site: Nizhnevartovsk state university <a href="http://nggu.ru" target="_blank">http://nggu.ru</a><br>
 Link to site: <a href="http://fok.nggu.ru" target="_blank">http://fok.nggu.ru</a><br>
 
-<p>I am author of HTML, CSS and PHP code. Some of instruments were borrowed (see list of borrowed instruments).</p>
+<p>I am author of HTML, CSS, JavaScript code and PHP code. Some of instruments were borrowed (see list of borrowed instruments).</p>
 <p>This prodict is free to use (acourding to GPL Licence). The only condition for using this product is to provide link for <a href="http://it.nggu.ru" target="_blank">http://it.nggu.ru</a>.</p>
 
 <p>List of borrowed instruments:
