@@ -1,7 +1,7 @@
 fok
 ===
 
-This is my fourth project
+This is my fourth project (completed 29.11.2013)
 
 Developer of site: Starostenko Alexey<br>
 Owner of site: Nizhnevartovsk state university <a href="http://nggu.ru" target="_blank">http://nggu.ru</a><br>
